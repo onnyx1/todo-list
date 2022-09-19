@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+  <!--   <svg xmlns="http://www.w3.org/2000/svg" class="menu_icon" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path></svg>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12.527 3.075c.35.104.64.263 1.27.876L19.1 9.123c.374.364.49.505.601.678.11.174.185.351.232.552.042.178.062.34.066.742L20 17.718c0 .446-.046.607-.134.77a.906.906 0 01-.378.378c-.163.088-.324.134-.77.134H14v-4.718c0-.446-.046-.607-.134-.77a.906.906 0 00-.378-.378c-.142-.077-.284-.122-.616-.132L12.718 13h-1.436c-.446 0-.607.046-.77.134a.906.906 0 00-.378.378c-.077.142-.122.284-.132.616l-.002.154V19H5.282c-.446 0-.607-.046-.77-.134a.906.906 0 01-.378-.378c-.088-.163-.134-.324-.134-.77v-6.462c0-.522.02-.703.067-.903.047-.2.121-.378.232-.552l.077-.113c.098-.134.233-.282.524-.565l5.304-5.172c.629-.613.92-.772 1.269-.876a1.82 1.82 0 011.054 0zm-.286.958a.825.825 0 00-.482 0c-.18.054-.326.139-.63.418l-.227.216L5.598 9.84c-.3.293-.385.39-.456.5a.76.76 0 00-.102.242c-.026.112-.037.224-.04.531l.002 6.807.005.073.074.006L8.999 18 9 14.268l.003-.17c.013-.448.083-.749.249-1.058a1.9 1.9 0 01.788-.788c.306-.164.6-.234 1.043-.249l.199-.003h1.45l.17.003c.448.013.749.083 1.058.249.337.18.608.45.788.788.164.306.234.6.249 1.043l.003.199L14.999 18l3.92-.002.073-.006.006-.073.002-.2v-6.615l-.005-.218a1.494 1.494 0 00-.035-.305.747.747 0 00-.102-.242l-.059-.084a3.571 3.571 0 00-.294-.315l-5.407-5.273c-.425-.414-.604-.545-.798-.615l-.06-.019z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="close_icon"><path fill="currentColor" fill-rule="nonzero" d="M5.146 5.146a.5.5 0 0 1 .708 0L12 11.293l6.146-6.147a.5.5 0 0 1 .638-.057l.07.057a.5.5 0 0 1 0 .708L12.707 12l6.147 6.146a.5.5 0 0 1 .057.638l-.057.07a.5.5 0 0 1-.708 0L12 12.707l-6.146 6.147a.5.5 0 0 1-.638.057l-.07-.057a.5.5 0 0 1 0-.708L11.293 12 5.146 5.854a.5.5 0 0 1-.057-.638z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.854 8.146L12 11.293l3.146-3.147a.502.502 0 01.708.708L12.707 12l3.147 3.146a.502.502 0 01-.708.708L12 12.707l-3.146 3.147a.502.502 0 01-.708-.708L11.293 12 8.146 8.854a.502.502 0 01.708-.708z" fill="currentColor" fill-rule="nonzero"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 11-.001 18.001A9 9 0 0112 3zm0 1a8 8 0 100 16 8 8 0 000-16zm-.093 10.794c.47 0 .802.355.802.856 0 .495-.331.85-.802.85-.471 0-.808-.355-.808-.85 0-.501.337-.856.808-.856zm.128-7.294c1.465 0 2.465.954 2.465 2.213 0 .96-.47 1.639-1.215 2.11-.738.458-.948.8-.948 1.443v.397H11.32v-.562c-.006-.808.366-1.358 1.163-1.86.674-.433.936-.818.936-1.473 0-.758-.559-1.314-1.425-1.314-.878 0-1.436.544-1.5 1.418H9.5c.064-1.32.901-2.372 2.535-2.372z" fill="currentColor" fill-rule="nonzero"></path></svg>
+
+  <svg fill="none" xmlns="http://www.w3.org/2000/svg" class="yeJ7DFSh0CB61w0UHm64kQ=="><path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M13 6.5A1.5 1.5 0 0114.5 5h3A1.5 1.5 0 0119 6.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 0113 9.5v-3zM6.5 13A1.5 1.5 0 005 14.5v3A1.5 1.5 0 006.5 19h3a1.5 1.5 0 001.5-1.5v-3A1.5 1.5 0 009.5 13h-3zm8 0a1.5 1.5 0 00-1.5 1.5v3a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-3zm-8-8A1.5 1.5 0 005 6.5v3A1.5 1.5 0 006.5 11h3A1.5 1.5 0 0011 9.5v-3A1.5 1.5 0 009.5 5h-3z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 6h-3a.5.5 0 00-.5.5v3a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-3a.5.5 0 00-.5-.5zm-3-1A1.5 1.5 0 0013 6.5v3a1.5 1.5 0 001.5 1.5h3A1.5 1.5 0 0019 9.5v-3A1.5 1.5 0 0017.5 5h-3zm-8 9h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zm-1.5.5A1.5 1.5 0 016.5 13h3a1.5 1.5 0 011.5 1.5v3A1.5 1.5 0 019.5 19h-3A1.5 1.5 0 015 17.5v-3zm9.5-.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zm-1.5.5a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3a1.5 1.5 0 01-1.5-1.5v-3zM6.5 6h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zM5 6.5A1.5 1.5 0 016.5 5h3A1.5 1.5 0 0111 6.5v3A1.5 1.5 0 019.5 11h-3A1.5 1.5 0 015 9.5v-3z" fill="currentColor"></path></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"></path><path stroke="currentColor" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"></path></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14.5 15.5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 15.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 15.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 10.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 10.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 5.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 5.5z"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 24V0h24v24z"></path><path fill="currentColor" fill-rule="nonzero" d="M13.293 12L9.646 8.354a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 12z"></path></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0z"></path><path fill="currentColor" fill-rule="nonzero" d="M10.707 12l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708.708L10.707 12z"></path></g></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M16 10l-4 4-4-4"></path></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3a5.75 5.75 0 015.75 5.75c0 3.24.682 5.875 2.03 7.927A1.5 1.5 0 0118.525 19H14.5a2.5 2.5 0 01-5 0H5.475a1.501 1.501 0 01-1.254-2.323C5.568 14.625 6.25 11.989 6.25 8.75A5.75 5.75 0 0112 3zm1.5 16h-3a1.5 1.5 0 003 0zM12 4a4.75 4.75 0 00-4.75 4.75c0 3.423-.731 6.248-2.193 8.476a.5.5 0 00.418.774h13.05a.5.5 0 00.418-.774c-1.462-2.227-2.193-5.053-2.193-8.476A4.75 4.75 0 0012 4z" fill="currentColor" fill-rule="nonzero"></path></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><g fill="currentColor" fill-rule="nonzero"><g><g><path d="M12 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9zm0 1c-4.418 0-8 3.582-8 8 0 .702.09 1.383.26 2.031l2.886-2.885c.196-.195.512-.195.708 0l2.646 2.647 4.793-4.794L13 9c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h3.52l.052.005L16.5 8c.036 0 .071.004.105.011l.046.012.04.015c.014.005.027.012.04.019.013.006.025.013.036.02l.035.025c.014.01.027.02.04.033l.012.011.011.013c.012.012.023.025.033.039l-.044-.052c.026.027.05.056.069.087l.02.034.02.042.014.04c.005.015.009.03.012.046l.006.033.005.051V12c0 .276-.224.5-.5.5s-.5-.224-.5-.5V9.706l-5.146 5.148c-.196.195-.512.195-.708 0L7.5 12.207 4.618 15.09C5.827 17.974 8.677 20 12 20c4.418 0 8-3.582 8-8s-3.582-8-8-8z" transform="translate(-564 -480) translate(528 444) translate(36 36)"></path></g></g></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="search_icon"><path d="M10.5 3a7.5 7.5 0 015.645 12.438l4.709 4.708a.502.502 0 01-.708.708l-4.708-4.709A7.5 7.5 0 1110.5 3zm0 1a6.5 6.5 0 100 13 6.5 6.5 0 000-13z" fill="currentColor"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M11.9 16.5c-.46 0-.8-.35-.8-.85s.34-.86.8-.86c.48 0 .8.36.8.86s-.32.85-.8.85zM9.5 9.87c.06-1.32.9-2.37 2.54-2.37 1.46 0 2.46.95 2.46 2.21 0 .96-.47 1.64-1.22 2.11-.73.46-.94.8-.94 1.45v.4h-1.02v-.57c0-.8.37-1.36 1.16-1.86.68-.43.94-.82.94-1.47 0-.76-.56-1.32-1.43-1.32-.87 0-1.43.55-1.5 1.42H9.5z"></path><circle cx="12" cy="12" r="7.5" stroke="currentColor"></circle></g></svg>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="project_icon" style="color: rgb(184, 184, 184);"><path d="M12 7a5 5 0 110 10 5 5 0 010-10z" fill="currentColor"></path></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" class="project_icon" style="color: rgb(184, 184, 184);"><circle cx="6" cy="6" r="4" fill="currentColor"></circle></svg>
+<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" class="recurring_icon"><path fill="currentColor" d="M2.784 4.589l.07.057 1.5 1.5a.5.5 0 01-.638.765l-.07-.057L3 6.207V7a2 2 0 001.85 1.995L5 9h2.5a.5.5 0 01.09.992L7.5 10H5a3 3 0 01-2.995-2.824L2 7v-.793l-.646.647a.5.5 0 01-.638.057l-.07-.057a.5.5 0 01-.057-.638l.057-.07 1.5-1.5a.5.5 0 01.638-.057zM7 2a3 3 0 013 3v.792l.646-.646a.5.5 0 01.765.638l-.057.07-1.5 1.5a.5.5 0 01-.638.057l-.07-.057-1.5-1.5a.5.5 0 01.638-.765l.07.057.646.646V5a2 2 0 00-1.85-1.995L7 3H4.5a.5.5 0 010-1z"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle fill="#FFCC4D" cx="18" cy="18" r="18"></circle><path fill="#664500" d="M10.515 23.621C10.56 23.8 11.683 28 18 28c6.318 0 7.44-4.2 7.485-4.379.055-.217-.043-.442-.237-.554-.195-.111-.439-.078-.6.077C24.629 23.163 22.694 25 18 25s-6.63-1.837-6.648-1.855C11.256 23.05 11.128 23 11 23c-.084 0-.169.021-.246.064-.196.112-.294.339-.239.557z"></path><ellipse fill="#664500" cx="12" cy="13.5" rx="2.5" ry="3.5"></ellipse><ellipse fill="#664500" cx="24" cy="13.5" rx="2.5" ry="3.5"></ellipse></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><path d="M1.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor" fill-rule="evenodd"></path></svg>
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+  <path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" />
+</svg>
+
+<i class="fa-regular fa-flag" style = "fill: blue; color: blue"></i>
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+  <path fill="currentColor" d="M6,3A1,1 0 0,1 7,4V4.88C8.06,4.44 9.5,4 11,4C14,4 14,6 16,6C19,6 20,4 20,4V12C20,12 19,14 16,14C13,14 13,12 11,12C8,12 7,14 7,14V21H5V4A1,1 0 0,1 6,3Z" />
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"></path><path stroke="currentColor" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"></path></g></svg>
+<svg style="width:24px;height:24px;" viewBox="0 0 24 24">
+</svg>
+
+<svg style="width:24px;height:24px; color: rgb(147,147,147)" viewBox="0 0 24 24">
+  <path fill="currentColor" d="M20.03 12C20.03 7.59 16.41 3.97 12 3.97C7.59 3.97 3.97 7.59 3.97 12C3.97 16.41 7.59 20.03 12 20.03C16.41 20.03 20.03 16.41 20.03 12M22 12C22 17.54 17.54 22 12 22C6.46 22 2 17.54 2 12C2 6.46 6.46 2 12 2C17.54 2 22 6.46 22 12M13.54 13V16L17.5 12L13.54 8V11H6.5V13" />
+</svg>
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+  <path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 65.179 90 H 24.821 c -4.238 0 -7.752 -3.314 -8 -7.545 L 12.8 13.769 c -0.032 -0.55 0.164 -1.088 0.542 -1.489 c 0.378 -0.401 0.904 -0.628 1.455 -0.628 h 60.408 c 0.551 0 1.077 0.227 1.455 0.628 c 0.378 0.4 0.573 0.939 0.542 1.489 L 73.18 82.455 C 72.931 86.686 69.417 90 65.179 90 z M 16.917 15.652 l 3.897 66.568 C 20.938 84.34 22.698 86 24.821 86 h 40.358 c 2.123 0 3.883 -1.66 4.008 -3.779 l 3.897 -66.568 H 16.917 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 81.546 15.652 H 8.454 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 73.092 c 1.104 0 2 0.896 2 2 S 82.65 15.652 81.546 15.652 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 59.056 15.652 H 30.944 c -1.104 0 -2 -0.896 -2 -2 V 7.927 C 28.944 3.556 32.5 0 36.872 0 h 16.256 c 4.371 0 7.928 3.556 7.928 7.927 v 5.725 C 61.056 14.757 60.16 15.652 59.056 15.652 z M 32.944 11.652 h 24.111 V 7.927 C 57.056 5.762 55.294 4 53.128 4 H 36.872 c -2.166 0 -3.927 1.762 -3.927 3.927 V 11.652 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 58.646 74.634 c -0.039 0 -0.079 -0.001 -0.119 -0.004 c -1.103 -0.064 -1.944 -1.011 -1.88 -2.113 l 2.533 -43.25 c 0.063 -1.103 0.999 -1.946 2.113 -1.88 c 1.103 0.064 1.944 1.011 1.879 2.113 l -2.532 43.25 C 60.579 73.813 59.697 74.634 58.646 74.634 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 31.354 74.634 c -1.051 0 -1.933 -0.82 -1.995 -1.883 L 26.827 29.5 c -0.064 -1.103 0.777 -2.049 1.88 -2.113 c 1.087 -0.07 2.049 0.777 2.113 1.88 l 2.532 43.25 c 0.064 1.103 -0.777 2.049 -1.88 2.113 C 31.433 74.633 31.393 74.634 31.354 74.634 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 45 74.634 c -1.104 0 -2 -0.896 -2 -2 v -43.25 c 0 -1.104 0.896 -2 2 -2 s 2 0.896 2 2 v 43.25 C 47 73.738 46.104 74.634 45 74.634 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(64,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 256 256" xml:space="preserve"><desc>Created with Fabric.js 1.7.22</desc><defs></defs><g transform="translate(128 128) scale(0.72 0.72)" style=""><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)"><path d="M 63.475 11.851 h 11.228 c 2.116 0 3.831 1.715 3.831 3.831 v 70.487 c 0 2.116 -1.715 3.831 -3.831 3.831 H 15.297 c -2.116 0 -3.831 -1.715 -3.831 -3.831 V 15.682 c 0 -2.116 1.715 -3.831 3.831 -3.831 h 11.228" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(57,57,57); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><polygon points="61.75,15.87 72.84,15.87 72.84,84.94 17.16,84.94 17.16,15.87 28.25,15.87 " style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(249,249,249); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "></polygon><path d="M 53.065 7.25 C 52.634 3.175 49.189 0 45 0 s -7.634 3.175 -8.065 7.25 h -4.728 c -3.138 0 -5.681 2.544 -5.681 5.681 v 5.883 h 36.949 v -5.883 c 0 -3.138 -2.544 -5.681 -5.681 -5.681 H 53.065 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(72,69,69); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 27.614 39.834 c -0.042 0 -0.085 -0.002 -0.128 -0.005 c -0.466 -0.04 -0.886 -0.295 -1.137 -0.689 l -3.097 -4.867 c -0.445 -0.699 -0.239 -1.626 0.46 -2.071 s 1.626 -0.238 2.071 0.46 l 2.043 3.21 l 5.845 -6.425 c 0.557 -0.614 1.505 -0.658 2.119 -0.1 c 0.613 0.557 0.658 1.506 0.1 2.119 l -7.166 7.878 C 28.438 39.657 28.034 39.834 27.614 39.834 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 27.614 58.919 c -0.042 0 -0.085 -0.002 -0.128 -0.006 c -0.466 -0.04 -0.886 -0.295 -1.137 -0.688 l -3.097 -4.867 c -0.445 -0.699 -0.239 -1.626 0.46 -2.071 c 0.699 -0.446 1.626 -0.239 2.071 0.46 l 2.043 3.211 l 5.845 -6.426 c 0.557 -0.613 1.505 -0.658 2.119 -0.1 c 0.613 0.558 0.658 1.506 0.1 2.119 l -7.166 7.878 C 28.438 58.742 28.034 58.919 27.614 58.919 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 27.614 78.003 c -0.042 0 -0.085 -0.002 -0.128 -0.006 c -0.466 -0.04 -0.886 -0.295 -1.137 -0.688 l -3.097 -4.867 c -0.445 -0.699 -0.239 -1.626 0.46 -2.071 c 0.699 -0.446 1.626 -0.238 2.071 0.46 l 2.043 3.211 l 5.845 -6.426 c 0.557 -0.612 1.505 -0.658 2.119 -0.1 c 0.613 0.558 0.658 1.506 0.1 2.119 l -7.166 7.878 C 28.438 77.826 28.034 78.003 27.614 78.003 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 65.483 36.256 H 42.254 c -0.829 0 -1.5 -0.671 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 23.229 c 0.828 0 1.5 0.671 1.5 1.5 S 66.312 36.256 65.483 36.256 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 65.483 55.34 H 42.254 c -0.829 0 -1.5 -0.672 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 23.229 c 0.828 0 1.5 0.672 1.5 1.5 S 66.312 55.34 65.483 55.34 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 65.483 74.425 H 42.254 c -0.829 0 -1.5 -0.672 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 23.229 c 0.828 0 1.5 0.672 1.5 1.5 S 66.312 74.425 65.483 74.425 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(69,184,142); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></g></svg>
+
+
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" title="" width="24" height="24" data-original-title="Move to project"> <g fill="none" transform="translate(4 4)"> <circle cx="8" cy="8" r="7.5" stroke="#808080" fill="none"></circle> <path fill="#808080" d="M10.11 7.82L8.15 5.85a.5.5 0 1 1 .7-.7l2.83 2.82a.5.5 0 0 1 0 .71l-2.83 2.83a.5.5 0 1 1-.7-.7l1.98-1.99H4.5a.5.5 0 1 1 0-1h5.61z"></path> </g> </svg>
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="taskPriorityFlag_bgp3lv24c" data-bs-toggle="tooltip" data-bs-placement="top" title="" width="24" height="24" data-original-title="Change priority"><g fill="#F49C18"><path d="M5 5.5L6 5v14.5a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5v-14z" fill="#F49C18"></path><path stroke="#F49C18" d="M5.5 13.58s2.42-1.32 6.5.02 7.5.03 7.5.03l-.02-7.95c.01-.05-3.4 1.26-7.48-.08s-6.5-.02-6.5-.02v7.93" fill="#F49C18"></path></g></svg>
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="taskPriorityFlag_ycaevviaf" data-bs-toggle="tooltip" data-bs-placement="top" title="" width="24" height="24" data-original-title="Change priority"><g fill="#4073D6"><path d="M5 5.5L6 5v14.5a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5v-14z" fill="#4073D6"></path><path stroke="#4073D6" d="M5.5 13.58s2.42-1.32 6.5.02 7.5.03 7.5.03l-.02-7.95c.01-.05-3.4 1.26-7.48-.08s-6.5-.02-6.5-.02v7.93" fill="#4073D6"></path></g></svg>
+
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="taskPriorityFlag_bms1y77pv" data-bs-toggle="tooltip" data-bs-placement="top" title="" width="24" height="24" data-original-title="Change priority"><g fill="#DE4C4A"><path d="M5 5.5L6 5v14.5a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5v-14z" fill="#DE4C4A"></path><path stroke="#DE4C4A" d="M5.5 13.58s2.42-1.32 6.5.02 7.5.03 7.5.03l-.02-7.95c.01-.05-3.4 1.26-7.48-.08s-6.5-.02-6.5-.02v7.93" fill="#DE4C4A"></path></g></svg>
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="24" height="24"> <g fill="none" fill-rule="evenodd"> <path d="M0 0h24v24H0z" fill="none"></path> <rect width="14" height="1" x="5" y="6" fill="#808080" rx=".5"></rect> <path fill="#808080" d="M10 9h1v8h-1V9zm3 0h1v8h-1V9z"></path> <path stroke="#808080" d="M17.5 6.5h-11V18A1.5 1.5 0 0 0 8 19.5h8a1.5 1.5 0 0 0 1.5-1.5V6.5zm-9 0h7V5A1.5 1.5 0 0 0 14 3.5h-4A1.5 1.5 0 0 0 8.5 5v1.5z" fill="none"></path> </g></svg>
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" class="invert" width="24" height="24" viewBox="0 0 24 24">
+  <g fill="none" fill-rule="evenodd" transform="translate(4 3)">
+    <mask id="jd4FBg" fill="#FFFFFF">
+      <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z" fill="#FFFFFF"></path>
+    </mask>
+    <g mask="url(#jd4FBg)" fill="none">
+      <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
+    </g>
+  </g>
+</svg>
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="24" height="24"> <g fill="none" fill-rule="evenodd"> <path fill="#808080" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"></path> <path stroke="#808080" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z" fill="none"></path> </g> </svg>
+
+<hr> 
+  -->
+
+    <!-- Header Start -->
+    <header>
+      
+      <!-- Header-Left Start -->
+      <div class="header-left">
+        <button type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="menu_icon" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path></svg>
+        </button>
+        <button type="button">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="currentColor"
+              d="M12.527 3.075c.35.104.64.263 1.27.876L19.1 9.123c.374.364.49.505.601.678.11.174.185.351.232.552.042.178.062.34.066.742L20 17.718c0 .446-.046.607-.134.77a.906.906 0 01-.378.378c-.163.088-.324.134-.77.134H14v-4.718c0-.446-.046-.607-.134-.77a.906.906 0 00-.378-.378c-.142-.077-.284-.122-.616-.132L12.718 13h-1.436c-.446 0-.607.046-.77.134a.906.906 0 00-.378.378c-.077.142-.122.284-.132.616l-.002.154V19H5.282c-.446 0-.607-.046-.77-.134a.906.906 0 01-.378-.378c-.088-.163-.134-.324-.134-.77v-6.462c0-.522.02-.703.067-.903.047-.2.121-.378.232-.552l.077-.113c.098-.134.233-.282.524-.565l5.304-5.172c.629-.613.92-.772 1.269-.876a1.82 1.82 0 011.054 0zm-.286.958a.825.825 0 00-.482 0c-.18.054-.326.139-.63.418l-.227.216L5.598 9.84c-.3.293-.385.39-.456.5a.76.76 0 00-.102.242c-.026.112-.037.224-.04.531l.002 6.807.005.073.074.006L8.999 18 9 14.268l.003-.17c.013-.448.083-.749.249-1.058a1.9 1.9 0 01.788-.788c.306-.164.6-.234 1.043-.249l.199-.003h1.45l.17.003c.448.013.749.083 1.058.249.337.18.608.45.788.788.164.306.234.6.249 1.043l.003.199L14.999 18l3.92-.002.073-.006.006-.073.002-.2v-6.615l-.005-.218a1.494 1.494 0 00-.035-.305.747.747 0 00-.102-.242l-.059-.084a3.571 3.571 0 00-.294-.315l-5.407-5.273c-.425-.414-.604-.545-.798-.615l-.06-.019z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Header-Left End -->
+
+      <!-- Header-Right Start -->
+
+      <div class="header-right">
+        <button type="button">
+          <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" class="invert" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" fill-rule="evenodd" transform="translate(4 3)">
+              <mask id="jd4FBg" fill="#FFFFFF">
+                <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z" fill="#FFFFFF"></path>
+              </mask>
+              <g mask="url(#jd4FBg)" fill="none">
+                <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
+              </g>
+            </g>
+          </svg>
+        </button>
+        <button type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 3a5.75 5.75 0 015.75 5.75c0 3.24.682 5.875 2.03 7.927A1.5 1.5 0 0118.525 19H14.5a2.5 2.5 0 01-5 0H5.475a1.501 1.501 0 01-1.254-2.323C5.568 14.625 6.25 11.989 6.25 8.75A5.75 5.75 0 0112 3zm1.5 16h-3a1.5 1.5 0 003 0zM12 4a4.75 4.75 0 00-4.75 4.75c0 3.423-.731 6.248-2.193 8.476a.5.5 0 00.418.774h13.05a.5.5 0 00.418-.774c-1.462-2.227-2.193-5.053-2.193-8.476A4.75 4.75 0 0012 4z" fill="currentColor" fill-rule="nonzero"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Header-Right End -->
+    </header>
+
+    <!-- Header End -->
+
+    <!-- Area Besides Header (contains nav and main)-->
+    <div class = "work-area">
+      <!-- Nav Start -->
+      <nav>
+        <ul style = "margin-top: 2.5rem;">
+          <li>
+            <a href="">
+              <svg id="inbox" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="Dd3PmF2g5h93YIf1bCDdiA==">
+                <g fill="currentColor" fill-rule="nonzero">
+                  <path d="M10 14.5a2 2 0 104 0h5.5V18a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-3.5H10z" opacity="0.1"></path>
+                  <path d="M8.062 4h7.876a2 2 0 011.94 1.515l2.062 8.246a2 2 0 01.06.485V18a2 2 0 01-2 2H6a2 2 0 01-2-2v-3.754a2 2 0 01.06-.485l2.06-8.246A2 2 0 018.061 4zm0 1a1 1 0 00-.97.757L5.03 14.004a1 1 0 00-.03.242V18a1 1 0 001 1h12a1 1 0 001-1v-3.754a1 1 0 00-.03-.242l-2.06-8.247A1 1 0 0015.94 5H8.061zM12 17.25A2.75 2.75 0 019.295 15H7a.5.5 0 110-1h2.75a.5.5 0 01.5.5 1.75 1.75 0 003.5 0 .5.5 0 01.5-.5H17a.5.5 0 110 1h-2.295A2.75 2.75 0 0112 17.25z"></path>
+                </g>
+              </svg>
+              <span>Inbox</span>
+            </a>
+            <span class="number">2</span>
+          </li>
+          <li>
+            <a href="">
+              <svg id="today" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ONBJEQtK++jnfUWJ3V90Dw==">
+                <g fill="currentColor" fill-rule="evenodd">
+                  <path fill-rule="nonzero" d="M6 4.5h12A1.5 1.5 0 0 1 19.5 6v2.5h-15V6A1.5 1.5 0 0 1 6 4.5z" opacity=".1"></path>
+                  <path fill-rule="nonzero" d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6zm1 3h10a.5.5 0 1 1 0 1H7a.5.5 0 0 1 0-1z"></path>
+                  <text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)" font-weight="500"><tspan x="8" y="15" text-anchor="middle">17</tspan></text>
+                </g>
+              </svg>
+              <span>Today</span>
+            </a>
+            <span class="number-today">3</span>
+          </li>
+          <li>
+            <a href="">
+              <svg id="upcoming" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="SWWJ2mDmoJ5jpYGsCY5nBA==">
+                <g fill="currentColor" fill-rule="nonzero">
+                  <path d="M6 4.5h12A1.5 1.5 0 0119.5 6v2.5h-15V6A1.5 1.5 0 016 4.5z" opacity="0.1"></path>
+                  <path d="M6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm0 1a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V6a1 1 0 00-1-1H6zm10 12a1 1 0 110-2 1 1 0 010 2zm-4 0a1 1 0 110-2 1 1 0 010 2zm-4 0a1 1 0 110-2 1 1 0 010 2zm8-4a1 1 0 110-2 1 1 0 010 2zm-4 0a1 1 0 110-2 1 1 0 010 2zm-4 0a1 1 0 110-2 1 1 0 010 2zM7 8h10a.5.5 0 110 1H7a.5.5 0 010-1z"></path>
+                </g>
+              </svg>
+              <span>Upcoming</span>
+            </a>
+          </li>
+          <li class = "no-hover">
+            <a href="">
+              <div style="width: 2.4rem; height: 2.4rem; vertical-align: middle; text-align: center">
+                <svg id="downArrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="aqv2kvH"><path d="M14 5.758L13.156 5 7.992 9.506l-.55-.48.002.002-4.588-4.003L2 5.77 7.992 11 14 5.758" fill="currentColor"></path></svg>
+              </div>
+              <span>Projects</span>
+            </a>
+
+<button id = "add">
+  <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" class="invert" width="24" height="24" viewBox="0 0 24 24">
+    <g fill="none" fill-rule="evenodd" transform="translate(4 3)">
+      <mask id="jd4FBg" fill="#FFFFFF">
+        <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z" fill="#FFFFFF"></path>
+      </mask>
+      <g mask="url(#jd4FBg)" fill="none">
+        <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
+      </g>
+    </g>
+  </svg>
+</button>
+
+          </li>
+
+          <li id = "a" class = "no-hover">
+            <ul class = "projects">
+              <li>
+                <a href="">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="project_icon" style="color: rgb(184, 184, 184)"><path d="M12 7a5 5 0 110 10 5 5 0 010-10z" fill="currentColor"></path></svg>
+                  <span>Personal <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle fill="#FFCC4D" cx="18" cy="18" r="18"></circle><path fill="#664500" d="M10.515 23.621C10.56 23.8 11.683 28 18 28c6.318 0 7.44-4.2 7.485-4.379.055-.217-.043-.442-.237-.554-.195-.111-.439-.078-.6.077C24.629 23.163 22.694 25 18 25s-6.63-1.837-6.648-1.855C11.256 23.05 11.128 23 11 23c-.084 0-.169.021-.246.064-.196.112-.294.339-.239.557z"></path><ellipse fill="#664500" cx="12" cy="13.5" rx="2.5" ry="3.5"></ellipse><ellipse fill="#664500" cx="24" cy="13.5" rx="2.5" ry="3.5"></ellipse></svg>
+                  </span>
+                </a>
+                <span class="number">8</span>
+              </li>
+
+              <li>
+                <a href="">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="project_icon" style="color: rgb(20,170,245)"><path d="M12 7a5 5 0 110 10 5 5 0 010-10z" fill="currentColor"></path></svg>
+                  <span>Work 
+                  </span>
+                </a>
+                <span class="number">4</span>
+              </li>
+
+
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- Nav End -->
+
+      <main>
+        <div class = "main-container">
+          <span class = "tab-title">Inbox</span>
+      </div>
+      </main>
+
+
+    </div>
+    <!-- Area Besides Header End (contains nav and main) -->
+
+  </body>
+</html>

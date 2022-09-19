@@ -1,0 +1,294 @@
+
+/* custom properties, rem(font size base), box-sizing */
+:root {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  --headerColor: rgb(219,76,63);
+  --iconColor: rgb(255,255,255);
+  --inboxColor: rgb(36,111,224);
+  --todayColor: rgb(5,133,39);
+  --upcomingColor: rgb(105,47,194);
+  --filterColor: rgb(236,132,22);
+  --downArrowColor: rgb(130,130,130);
+  --circleColor: rgb(184,184,184);
+  --crudColor: rgb(128,128,128);
+  --navColor: rgb(250,250,250);
+  --navTextColor: #202020;
+  --navNumberColor: rgb(205,185,179);
+  --navNumberToday: rgb(229,89,88);
+  --navHoverColor: rgb(238,238,238);
+}
+
+/* border- box on all elements */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Remove system-level styling on inputs used by browsers */
+input {
+  appearance: none;
+}
+
+
+/* Defines a height for html so that we can use percentages */
+html {
+  height: 100%;
+}
+
+/* background-color, margins, fonts */
+/* body extends whole viewport and no scrolling issues */
+/* font-size by default is 16px */
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: Helvetica;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Header Start */
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--headerColor);
+  padding: .5rem;
+}
+
+header button {
+  background-color: transparent;
+  border-style: none;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: middle;
+
+}
+
+header svg {
+  color:var(--iconColor);
+  width: 2.4rem;
+  height: 2.4rem;
+  vertical-align: middle;
+}
+
+.header-left button {
+  
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.header-right button {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  margin-left: 3.5rem;
+
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+
+  margin-right: 3.5rem;
+
+}
+
+
+/* Header End */
+
+
+/* Area Besides Header Start (contains nav and main) */
+
+.work-area {
+  flex: 1;
+  display: flex;
+}
+
+
+/* Area Besides Header End (contains nav and main) */
+
+/* Nav Start */
+nav {
+  max-width: 30rem;
+  width: 100%;
+  background-color: var(--navColor);
+  margin-right: 5rem ;
+}
+
+
+li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem .5rem;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  flex: 1;
+}
+
+a:visited {
+  color: inherit;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0px;
+  padding-left: 3.7rem;
+}
+
+nav svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+#inbox {
+  color: var(--inboxColor);
+}
+
+#today{
+  color: var(--todayColor);
+}
+
+#upcoming {
+  color: var(--upcomingColor);
+}
+
+#downArrow {
+  color: var(--downArrowColor);
+  width:1.6rem;
+  height: 1.6rem;
+  margin-top: .4rem;
+  vertical-align: middle;
+}
+
+nav span {
+  color: var(--navTextColor);
+  font-size: 14px;
+  line-height: 1.7rem;
+}
+
+.number {
+  color: var(--navNumberColor);
+  margin-right: 2rem;
+}
+
+.number-today {
+  margin-right: 2rem;
+  color: var(--navNumberToday)
+}
+
+nav li:nth-child(4){
+  margin-top: 1.4rem;
+  margin-bottom: .5rem;
+  font-weight: 800;
+}
+
+ul li:not(.no-hover):hover{
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+}
+
+svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.projects {
+  padding: 0px;
+}
+
+#a {
+  padding: 0px;
+}
+
+
+li ul {
+  width: 100%;
+}
+
+.projects span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.projects span svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+#add {
+background-color: transparent;
+border-style: none;
+display: flex;
+align-items: center;
+margin-right: .9rem;
+padding: .6rem;
+
+
+}
+
+#add svg {
+  width: 1.7rem;
+  height:1.7rem;
+}
+
+#add:hover{
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
+/* Nav End */
+
+
+/* Main Start */
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Main End */
+
+.main-container{
+display: flex;
+flex-direction: column;
+max-width: 1000px;
+width: 100%;
+flex: 1;
+margin: 0 auto;
+margin-top: 3rem;
+}
+
+.tab-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
