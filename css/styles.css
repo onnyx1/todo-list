@@ -33,8 +33,10 @@ input {
 
 
 /* Defines a height for html so that we can use percentages */
+/* Keep overflowed items like nav bar hidden */
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 /* background-color, margins, fonts */
@@ -106,6 +108,11 @@ header svg {
 
 }
 
+header button:hover{
+  background-color: rgb(226,112,101);
+  border-radius: 5px;
+}
+
 
 /* Header End */
 
@@ -125,7 +132,9 @@ nav {
   max-width: 30rem;
   width: 100%;
   background-color: var(--navColor);
-  margin-right: 5rem ;
+  transition-duration: .5s;
+  position: absolute;
+  height: 100%;
 }
 
 
@@ -145,6 +154,9 @@ a {
   flex: 1;
 }
 
+
+
+
 a:visited {
   color: inherit;
 }
@@ -156,6 +168,9 @@ ul {
   list-style: none;
   padding: 0px;
   padding-left: 3.7rem;
+  height: 100%;
+
+
 }
 
 nav svg {
@@ -181,6 +196,7 @@ nav svg {
   height: 1.6rem;
   margin-top: .4rem;
   vertical-align: middle;
+  transition-duration: .1s;
 }
 
 nav span {
@@ -205,6 +221,8 @@ nav li:nth-child(4){
   font-weight: 800;
 }
 
+
+
 ul li:not(.no-hover):hover{
   background-color: var(--navHoverColor);
   border-radius: 5px;
@@ -224,6 +242,7 @@ svg {
 }
 
 
+
 li ul {
   width: 100%;
 }
@@ -239,6 +258,7 @@ li ul {
   height: 1.4rem;
 }
 
+
 #add {
 background-color: transparent;
 border-style: none;
@@ -253,6 +273,7 @@ padding: .6rem;
 #add svg {
   width: 1.7rem;
   height:1.7rem;
+  color: rgb(102,102,102);
 }
 
 #add:hover{
@@ -263,6 +284,50 @@ padding: .6rem;
 
 
 
+.slideOut {
+  transform: translate(-300px,0);
+  height: 100%;
+  max-width: 30rem;
+}
+
+
+
+.slideIn {
+  transform: translate(0,0);
+}
+
+.shiftOut {
+  margin-left: 0rem;
+}
+
+.shiftIn{
+  margin-left: 35rem;
+}
+
+
+.rotateRight{
+  transform: rotate(-90deg);
+}
+
+.rotateDown{
+  transform: rotate(0);
+}
+
+#a {
+
+overflow: hidden;
+}
+
+.hide {
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  max-height: 0px;
+}
+
+.show{
+  transition: max-height 1s ease-in-out;
+  max-height: 1000px !important;
+  
+}
 
 /* Nav End */
 
@@ -273,6 +338,8 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-left: 35rem;
+  transition-duration: .5s;
 }
 
 
@@ -281,7 +348,7 @@ main {
 .main-container{
 display: flex;
 flex-direction: column;
-max-width: 1000px;
+max-width: 900px;
 width: 100%;
 flex: 1;
 margin: 0 auto;
