@@ -5,6 +5,10 @@ const projectTab = document.querySelector(".project-tab");
 const downArrow = document.querySelector("#downArrow");
 const projectList = document.querySelector(".projects");
 const a = document.querySelector("#a");
+const todoItem = document.querySelector(".todo-row");
+const checkbox = document.querySelector(".checkbox__input");
+const label = document.querySelector(".checkbox");
+
 
 
 
@@ -39,3 +43,18 @@ projectTab.addEventListener("click", () => {
 
   }
 });
+
+checkbox.addEventListener(("click"), ()=>{
+  if(checkbox.checked){
+  setTimeout(() => {
+todoItem.style.display = "none";
+  
+}, 300
+)
+  }
+})
+
+
+
+
+
