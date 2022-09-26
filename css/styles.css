@@ -129,7 +129,7 @@ nav {
   height: 100%;
 }
 
-li {
+nav li {
   width: 100%;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@ a:visited {
   color: inherit;
 }
 
-ul {
+nav ul {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -698,7 +698,7 @@ height: 1.2rem;
   height: 100%;
   gap: 1rem;
   margin-left: auto;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 #calendar {
@@ -711,9 +711,9 @@ height: 1.2rem;
   height: 2.4rem;
 }
 
-.todo-row:hover .todo-actions{
+/* .todo-row:hover .todo-actions{
   opacity: 1;
-}
+} */
 
 /* Todo Item Buttons End */
 
@@ -738,7 +738,7 @@ height: 1.2rem;
   width: 1.3rem;
   height: 1.3rem;  
   margin-left: .21rem;
-  margin-bottom: .17rem;
+  margin-bottom: .32rem;
 }
 
 .add-task-row:hover .add-icon::before{
@@ -778,18 +778,277 @@ color: var(--crudColor);
 /* Main End */
 
 
+/* Edit Todo Item Editor Start */
+
 input[type="date"]{
   display: inline;
-  width: 120px;
+  width: 115px;
   border: 1px solid rgb(204,204,204);
-  color: rgb(46, 44, 44);
-  border-radius: 10px;
-  padding: .5rem .3rem ;
-  text-align: center;
+  color: #555555;
+  padding: .3rem .3rem ;
   font-size: 1.3rem;
+  border-radius: 5px;
+
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator
-{
-color : rgb(204,204,204);
+
+
+.edit-todo-menu textarea, input[type="text"]{
+  width: 100%;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  color : var(--navTextColor);
+
+}
+
+.edit-todo-menu textarea {
+  font-size: 1.3rem;
+
+}
+
+.edit-todo-menu textarea::placeholder {
+
+ font-size: 1.3rem;
+}
+
+.edit-todo-menu input[type="text"] {
+  font-size: 1.4rem;
+}
+
+.edit-todo-menu input[type="text"]::placeholder {
+  font-size: 1.4rem;
+ }
+
+.edit-todo-menu {
+  border: 1px solid rgb(229,229,229);
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.edit-todo-menu-actions {
+  display: flex;
+  width: 100%;
+  gap: .8rem;
+  position: relative;
+}
+
+
+
+.edit-todo-menu-flag{
+  border: none;
+  color: #555555;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: .3rem .3rem;
+  position: absolute;
+  right: 0;
+}
+
+.edit-todo-menu-flag:hover {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+}
+
+.edit-todo-menu-footer {
+  margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.edit-todo-menu-add-task {
+  background-color: rgb(219,76,63);
+  color: white;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  border: none;
+  font-weight: 600;
+  padding: .8rem 1.2rem;
+
+}
+
+.cancel-button{
+  background-color: rgb(245,245,245);
+  color: #1a1a1a;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  border: none;
+padding: .8rem 1.2rem;
+
+
+font-weight: 600;
+
+}
+
+.edit-todo-menu-container{
+  display: none;
+}
+/* Edit Todo Item Editor End */
+
+
+.edit-todo-menu-project{
+  border: 1px solid rgb(204,204,204);
+  color: #555555;
+  border-radius: 5px;
+  padding: .4rem 1rem ;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  min-width: 7rem;
+  position: relative;
+
+}
+
+
+
+
+/* DropDown Styles */
+
+/* Dropdown container */
+.dropdown {
+  font-size: 1.3rem;
+  min-width: 10rem;
+  position: relative;
+}
+
+/* Selected item with caret */
+.select {
+
+  border: 1px solid rgb(204,204,204);
+  color: #555555;
+  border-radius: 5px;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  height: 100%;
+  padding: .3rem .5rem ;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+/* Clicked Styles
+   Added with JavaScript 
+*/
+
+
+
+
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgb(153,153,153);
+  transition: 0.3s;
+  margin-left: 1rem;
+}
+
+
+/* Rotate Styles 
+   Added with JavaScript 
+*/
+
+
+.caret-rotate {
+  transform: rotate(180deg);
+}
+
+.menu {
+  list-style: none;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgb(204,204,204);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
+  border-radius: .5rem;
+  color: #555555;
+  background-color: white;
+  position: absolute;
+  top: 1.5rem;
+  width: 100%;
+  opacity: 0;
+  display: none;
+  transition: 0.2s;
+  z-index: 1;
+}
+
+.menu li {
+  padding: 0.7rem 0.5rem;
+  margin: 0.3rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+}
+
+.menu li:hover {
+  background-color: var(--navHoverColor);
+}
+
+
+/* Active styles */
+/* Added with JavaScript  */
+
+.active {
+  background-color: var(--navHoverColor);
+}
+
+
+/* Open styles */
+/* Added with JavaScript  */
+
+.menu-open {
+  display: block;
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+/* Flag */
+.flag {
+  min-width: 0 !important;
+  position: absolute;
+  color: #555555;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  background-color: white;
+  padding: .3rem .3rem;
+  right: 0;
+  background-color: transparent;
+  
+}
+
+.flag .select {
+  border: none;
+}
+
+.flag .menu {
+  min-width: 12rem;
+ right: 1rem;
+}
+
+
+
+.flag-row{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
