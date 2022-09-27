@@ -13,6 +13,121 @@ const todoMenu = document.querySelector(".edit-todo-menu-container");
 const mainContainer = document.querySelector(".main-container");
 const taskName = document.querySelector(".task-name");
 const pencil = document.querySelector("#pencil");
+const z = document.querySelector("#z");
+const addNewTask = document.querySelector(".add-new-task");
+const modal = document.querySelector(".modal");
+
+
+
+
+
+addNewTask.addEventListener("click", ()=>{
+  const x = todoMenu.cloneNode(true);
+  x.setAttribute("id","todo-ab");
+  x.classList.add("absolute");
+  const y =x.querySelector(".edit-todo-menu");
+ const s = x.querySelector(".edit-todo-menu-footer");
+ s.classList.add("foot-margin");
+  y.classList.add("no-border");
+  modal.style.display = "block";
+  modal.appendChild(x);
+
+  function windowOnClick(event) {
+    if (event.target === modal) {
+      modal.removeChild(x);
+      modal.style.display = "none";
+  
+    }
+  }
+  window.addEventListener("click", windowOnClick); 
+
+
+
+  const dropdowns = x.querySelectorAll(".dropdown");
+
+  // Loop through dropdowns
+  dropdowns.forEach((dropdown) => {
+    // Get inner elements
+  
+    const select = dropdown.querySelector(".select");
+    const selected = dropdown.querySelector(".selected");
+    const caret = dropdown.querySelector(".caret");
+    const menu = dropdown.querySelector(".menu");
+    const options = dropdown.querySelectorAll(".menu li");
+  
+   
+    // We want all dropdowns on the page to work
+  
+    // Add click event for each select
+  
+    select.addEventListener("click", () => {
+     
+        caret.classList.toggle("caret-rotate");
+      
+  
+      menu.classList.toggle("menu-open");
+    });
+  
+    document.addEventListener("click", function(event) {
+        if (
+          event.target.matches(".dropdown") ||
+          !event.target.closest(".dropdown")
+        ) {
+          caret.classList.remove("caret-rotate");
+          menu.classList.remove("menu-open");
+        }
+      }
+    )
+  
+  
+  
+    // Add click event for each li
+  
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+       
+        if(dropdown.classList.contains("flag")){
+          const row = option.querySelector(".flag-row");
+          const text = row.querySelector(".flag-text");
+          text.style.display = "none";
+  
+          selected.innerHTML = row.innerHTML;
+          text.style.display = "block";
+  
+        } else {
+          selected.textContent = option.textContent;
+        }
+        caret.classList.remove("caret-rotate");
+        menu.classList.remove("menu-open");
+  
+        // Remove active class from all li elements
+  
+        options.forEach((option) => {
+          option.classList.remove("active");
+        });
+  
+        option.classList.add("active");
+      });
+    });
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+})
+
+
 
 
 hamburger.addEventListener("click", () => {
@@ -53,11 +168,20 @@ checkbox.addEventListener("click", () => {
 });
 
 addTask.addEventListener("click", () => {
+
   mainContainer.replaceChild(todoMenu, addTask);
+  
   todoMenu.style.display = "block";
   taskName.focus();
 });
 
+pencil.addEventListener("click", () => {
+  mainContainer.replaceChild(addTask, todoMenu);
+
+  mainContainer.replaceChild(todoMenu, z);
+  todoMenu.style.display = "block";
+  taskName.focus();
+});
 
 
 
@@ -75,6 +199,7 @@ dropdowns.forEach((dropdown) => {
   const menu = dropdown.querySelector(".menu");
   const options = dropdown.querySelectorAll(".menu li");
 
+ 
   // We want all dropdowns on the page to work
 
   // Add click event for each select
@@ -86,6 +211,19 @@ dropdowns.forEach((dropdown) => {
 
     menu.classList.toggle("menu-open");
   });
+
+  document.addEventListener("click", function(event) {
+      if (
+        event.target.matches(".dropdown") ||
+        !event.target.closest(".dropdown")
+      ) {
+        caret.classList.remove("caret-rotate");
+        menu.classList.remove("menu-open");
+      }
+    }
+  )
+
+
 
   // Add click event for each li
 

@@ -16,8 +16,7 @@
   --navNumberColor: rgb(205, 185, 179);
   --navNumberToday: rgb(229, 89, 88);
   --navHoverColor: rgb(238, 238, 238);
-  --addColor: rgb(221,75,57);
-
+  --addColor: rgb(221, 75, 57);
 }
 
 /* border- box on all elements */
@@ -49,6 +48,7 @@ body {
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* Header Start */
@@ -329,7 +329,6 @@ main {
   font-weight: 900;
 }
 
-
 /* 
 input[type="checkbox"] {
   width: 1.8rem;
@@ -340,19 +339,18 @@ input[type="checkbox"] {
    }
  */
 
-
- /* Checkbox gray */
+/* Checkbox gray */
 .checkbox {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
 }
 
-.checkbox__input{
+.checkbox__input {
   display: none;
 }
 
-.checkbox__box{
+.checkbox__box {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
@@ -365,52 +363,38 @@ input[type="checkbox"] {
   transition-duration: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input + .checkbox__box::after{
-  content: url(../images/check.svg);  
+.checkbox__input + .checkbox__box::after {
+  content: url(../images/check.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 0;
-  transition: opacity .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
-.checkbox__input:hover + .checkbox__box::after{
-  content: url(../images/check.svg);  
+.checkbox__input:hover + .checkbox__box::after {
+  content: url(../images/check.svg);
   height: 2.4rem;
   width: 2.4rem;
 
   opacity: 1;
-
 }
 
-
-
-.checkbox__input:checked + .checkbox__box::after{
-  content: url(../images/check_white.svg);  
+.checkbox__input:checked + .checkbox__box::after {
+  content: url(../images/check_white.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 1;
-  
 }
 
-
-.checkbox__input:checked + .checkbox__box{
+.checkbox__input:checked + .checkbox__box {
   background-color: rgb(130, 130, 130);
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   animation-name: expand;
 }
 
-
-
-
-
 /* CheckBox Gray End */
 
-
 /* CheckBox Red Start  */
-
-
 
 .checkbox__red {
   display: inline-flex;
@@ -418,16 +402,16 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.checkbox__input__red{
+.checkbox__input__red {
   display: none;
 }
 
-.checkbox__box__red{
+.checkbox__box__red {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
-  border: 1px solid rgb(209,69,59);
-  background-color: rgb(250,236,235);
+  border: 1px solid rgb(209, 69, 59);
+  background-color: rgb(250, 236, 235);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -436,53 +420,38 @@ input[type="checkbox"] {
   transition-duration: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input__red + .checkbox__box__red::after{
-  content: url(../images/check_red.svg);  
+.checkbox__input__red + .checkbox__box__red::after {
+  content: url(../images/check_red.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 0;
-  transition: opacity .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
-.checkbox__input__red:hover + .checkbox__box__red::after{
-  content: url(../images/check_red.svg);  
+.checkbox__input__red:hover + .checkbox__box__red::after {
+  content: url(../images/check_red.svg);
   height: 2.4rem;
   width: 2.4rem;
 
   opacity: 1;
-
 }
 
-
-
-.checkbox__input__red:checked + .checkbox__box__red::after{
-  content: url(../images/check_white.svg);  
+.checkbox__input__red:checked + .checkbox__box__red::after {
+  content: url(../images/check_white.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 1;
-  
 }
 
-
-.checkbox__input__red:checked + .checkbox__box__red{
-  background-color: rgb(209,69,59);
-  animation-duration: .3s;
+.checkbox__input__red:checked + .checkbox__box__red {
+  background-color: rgb(209, 69, 59);
+  animation-duration: 0.3s;
   animation-name: expand;
 }
 
 /* Red Checkbox End */
 
-
-
-
 /* Yellow CheckBox Start */
-
-
-
-
-
 
 .checkbox__yellow {
   display: inline-flex;
@@ -490,16 +459,16 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.checkbox__input__yellow{
+.checkbox__input__yellow {
   display: none;
 }
 
-.checkbox__box__yellow{
+.checkbox__box__yellow {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
-  border: 1px solid rgb(238,152,41);
-  background-color: rgb(253,243,230);
+  border: 1px solid rgb(238, 152, 41);
+  background-color: rgb(253, 243, 230);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -508,71 +477,55 @@ input[type="checkbox"] {
   transition-duration: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input__yellow + .checkbox__box__yellow::after{
-  content: url(../images/check_yellow.svg);  
+.checkbox__input__yellow + .checkbox__box__yellow::after {
+  content: url(../images/check_yellow.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 0;
-  transition: opacity .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
-.checkbox__input__yellow:hover + .checkbox__box__yellow::after{
-  content: url(../images/check_yellow.svg);  
+.checkbox__input__yellow:hover + .checkbox__box__yellow::after {
+  content: url(../images/check_yellow.svg);
   height: 2.4rem;
   width: 2.4rem;
 
   opacity: 1;
-
 }
 
-
-
-.checkbox__input__yellow:checked + .checkbox__box__yellow::after{
-  content: url(../images/check_white.svg);  
+.checkbox__input__yellow:checked + .checkbox__box__yellow::after {
+  content: url(../images/check_white.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 1;
-  
 }
 
-
-.checkbox__input__yellow:checked + .checkbox__box__yellow{
-  background-color: rgb(240,166,70);
-  animation-duration: .3s;
+.checkbox__input__yellow:checked + .checkbox__box__yellow {
+  background-color: rgb(240, 166, 70);
+  animation-duration: 0.3s;
   animation-name: expand;
 }
 
-
-
 /* Yellow CheckBox End */
-
-
 
 /* Blue CheckBox Start */
 
-
-
-
-.checkbox__blue
-{
+.checkbox__blue {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
 }
 
-.checkbox__input__blue
-{
+.checkbox__input__blue {
   display: none;
 }
 
-.checkbox__box__blue{
+.checkbox__box__blue {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
-  border: 1px solid rgb(36,111,224);
-  background-color: rgb(233,240,252);
+  border: 1px solid rgb(36, 111, 224);
+  background-color: rgb(233, 240, 252);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,57 +534,36 @@ input[type="checkbox"] {
   transition-duration: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input__blue + .checkbox__box__blue::after{
-  content: url(../images/check_blue.svg);  
+.checkbox__input__blue + .checkbox__box__blue::after {
+  content: url(../images/check_blue.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 0;
-  transition: opacity .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
-.checkbox__input__blue:hover + .checkbox__box__blue::after{
-  content: url(../images/check_blue.svg);  
+.checkbox__input__blue:hover + .checkbox__box__blue::after {
+  content: url(../images/check_blue.svg);
   height: 2.4rem;
   width: 2.4rem;
 
   opacity: 1;
-
 }
 
-
-
-.checkbox__input__blue:checked + .checkbox__box__blue::after{
-  content: url(../images/check_white.svg);  
+.checkbox__input__blue:checked + .checkbox__box__blue::after {
+  content: url(../images/check_white.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 1;
-  
 }
 
-
-.checkbox__input__blue:checked + .checkbox__box__blue{
-  background-color: rgb(36,111,224);
-  animation-duration: .3s;
+.checkbox__input__blue:checked + .checkbox__box__blue {
+  background-color: rgb(36, 111, 224);
+  animation-duration: 0.3s;
   animation-name: expand;
 }
 
-
-
-
-
-
-
 /* Blue CheckBox End */
-
-
-
-
-
-
-
-
 
 @keyframes expand {
   0% {
@@ -639,30 +571,28 @@ input[type="checkbox"] {
   }
   50% {
     transform: scale(1.2);
-
   }
   100% {
-    transform:scale(1);
+    transform: scale(1);
   }
 }
 
 .todo-row {
   display: flex;
-  border-bottom: 1px solid rgb(240,240,240);
+  border-bottom: 1px solid rgb(240, 240, 240);
   padding: 1rem 0rem;
   align-items: flex-start;
 }
 
-
 .todo-column {
   display: flex;
- flex-direction: column;
- gap: .3rem;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .todo-title {
   font-size: 1.4rem;
-  color : var(--navTextColor);
+  color: var(--navTextColor);
 }
 
 .todo-description {
@@ -670,26 +600,23 @@ input[type="checkbox"] {
   font-size: 1.2rem;
 }
 
-
 .todo-date {
   color: var(--crudColor);
   font-size: 1.2rem;
- display: flex;
- gap: .2rem
+  display: flex;
+  gap: 0.2rem;
 }
 
-.todo-date::before{
+.todo-date::before {
   content: url("./../images/todo-date.svg");
   width: 1.2rem;
-height: 1.2rem;
+  height: 1.2rem;
 }
 
-.todo-date::before svg{
-width: 1.2rem;
-height: 1.2rem;
+.todo-date::before svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
-
-
 
 /* Todo Item Buttons Start */
 
@@ -717,10 +644,7 @@ height: 1.2rem;
 
 /* Todo Item Buttons End */
 
-
-
-
-.add-task-row{
+.add-task-row {
   display: flex;
   align-items: center;
 }
@@ -730,87 +654,88 @@ height: 1.2rem;
   height: 2.4rem;
   display: flex;
   align-items: center;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
 
-.add-icon::before{
+.add-icon::before {
   content: url("./../images/add1.svg");
   width: 1.3rem;
-  height: 1.3rem;  
-  margin-left: .21rem;
-  margin-bottom: .32rem;
+  height: 1.3rem;
+  margin-left: 0.21rem;
+  margin-bottom: 0.32rem;
 }
 
-.add-task-row:hover .add-icon::before{
+.add-task-row:hover .add-icon::before {
   content: url("././../images/add-hover.svg");
 }
 
-.add-task-row:hover .add-task{
-  color: rgb(222,81,63);
+.add-task-row:hover .add-task {
+  color: rgb(222, 81, 63);
 }
 
 .add-task {
-font-size: 1.4rem;
-color: var(--crudColor);
+  font-size: 1.4rem;
+  color: var(--crudColor);
 }
 
-
-
 /* Button */
-.add-task-button{
+.add-task-button {
   background-color: transparent;
   border: none;
   padding: 0px;
 }
 
-
-
-.changeTaskColor{
-  color: rgb(222,81,63);
+.changeTaskColor {
+  color: rgb(222, 81, 63);
 }
 
-.changeTaskColor{
-  color: rgb(222,81,63);
+.changeTaskColor {
+  color: rgb(222, 81, 63);
 }
-
-
 
 /* Main End */
 
-
 /* Edit Todo Item Editor Start */
 
-input[type="date"]{
+input[type="date"] {
   display: inline;
   width: 115px;
-  border: 1px solid rgb(204,204,204);
+  border: 1px solid rgb(204, 204, 204);
   color: #555555;
-  padding: .3rem .3rem ;
+  padding: 0.3rem 0.3rem;
   font-size: 1.3rem;
   border-radius: 5px;
-
+  
 }
 
+input[type="date"]:hover {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+  transition: 0.3s;
+}
 
-
-.edit-todo-menu textarea, input[type="text"]{
+.edit-todo-menu textarea,
+input[type="text"] {
   width: 100%;
   border: none;
   outline: none;
   overflow: hidden;
   resize: none;
-  color : var(--navTextColor);
+  color: var(--navTextColor);
+}
 
+.task-name{
+ 
 }
 
 .edit-todo-menu textarea {
   font-size: 1.3rem;
-
+  
 }
 
 .edit-todo-menu textarea::placeholder {
-
- font-size: 1.3rem;
+  font-size: 1.3rem;
+  opacity: 0.9;
 }
 
 .edit-todo-menu input[type="text"] {
@@ -819,10 +744,11 @@ input[type="date"]{
 
 .edit-todo-menu input[type="text"]::placeholder {
   font-size: 1.4rem;
- }
+  opacity: 0.9;
+}
 
 .edit-todo-menu {
-  border: 1px solid rgb(229,229,229);
+  border: 1px solid rgb(229, 229, 229);
   border-radius: 15px;
   padding: 1rem;
   display: flex;
@@ -833,13 +759,11 @@ input[type="date"]{
 .edit-todo-menu-actions {
   display: flex;
   width: 100%;
-  gap: .8rem;
+  gap: 0.8rem;
   position: relative;
 }
 
-
-
-.edit-todo-menu-flag{
+.edit-todo-menu-flag {
   border: none;
   color: #555555;
   border-radius: 5px;
@@ -849,7 +773,7 @@ input[type="date"]{
   align-items: center;
   justify-content: center;
   background-color: white;
-  padding: .3rem .3rem;
+  padding: 0.3rem 0.3rem;
   position: absolute;
   right: 0;
 }
@@ -867,40 +791,89 @@ input[type="date"]{
   gap: 1rem;
 }
 .edit-todo-menu-add-task {
-  background-color: rgb(219,76,63);
+  background-color: rgb(219, 76, 63);
   color: white;
-  border-radius: 7px;
+  border-radius: 5px;
   font-size: 1.3rem;
   border: none;
   font-weight: 600;
-  padding: .8rem 1.2rem;
-
+  padding: 0.8rem 1.2rem;
 }
 
-.cancel-button{
-  background-color: rgb(245,245,245);
+.cancel-button {
+  background-color: rgb(245, 245, 245);
   color: #1a1a1a;
-  border-radius: 7px;
+  border-radius: 5px;
   font-size: 1.3rem;
   border: none;
-padding: .8rem 1.2rem;
+  padding: 0.8rem 1.2rem;
 
-
-font-weight: 600;
-
+  font-weight: 600;
 }
 
-.edit-todo-menu-container{
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 10;
+}
+
+.edit-todo-menu-container {
   display: none;
 }
+
+/* Fixed Modal*/
+
+.absolute {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 22%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 55rem !important;
+  width: 100%;
+  z-index: 5 !important;
+}
+
+.absolute input {
+  position: relative;
+  z-index: 5 !important;
+
+}
+.absolute .select{
+  z-index: 5 !important;
+
+}
+
+.no-border {
+  border: none;
+  padding: 0px;
+  z-index: 5 !important;
+
+}
+
+.foot-margin {
+  margin-top: 2rem;
+  z-index: 5 !important;
+
+}
+
+/* Fixed Modal End */
+
 /* Edit Todo Item Editor End */
 
-
-.edit-todo-menu-project{
-  border: 1px solid rgb(204,204,204);
+.edit-todo-menu-project {
+  border: 1px solid rgb(204, 204, 204);
   color: #555555;
   border-radius: 5px;
-  padding: .4rem 1rem ;
+  padding: 0.4rem 1rem;
   vertical-align: middle;
   display: flex;
   flex-direction: column;
@@ -909,11 +882,7 @@ font-weight: 600;
   background-color: white;
   min-width: 7rem;
   position: relative;
-
 }
-
-
-
 
 /* DropDown Styles */
 
@@ -921,48 +890,53 @@ font-weight: 600;
 .dropdown {
   font-size: 1.3rem;
   min-width: 10rem;
-  position: relative;
+position: relative;
 }
 
 /* Selected item with caret */
 .select {
-
-  border: 1px solid rgb(204,204,204);
+  border: 1px solid rgb(204, 204, 204);
   color: #555555;
-  border-radius: 5px;  
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
   height: 100%;
-  padding: .3rem .5rem ;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  
 }
 
+.select:not(.flag .select):hover {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+}
+
+.select svg:hover {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+  transition: 0.3s;
+}
 
 /* Clicked Styles
    Added with JavaScript 
 */
-
-
-
 
 .caret {
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid rgb(153,153,153);
+  border-top: 5px solid rgb(153, 153, 153);
   transition: 0.3s;
   margin-left: 1rem;
 }
 
-
 /* Rotate Styles 
    Added with JavaScript 
 */
-
 
 .caret-rotate {
   transform: rotate(180deg);
@@ -971,9 +945,9 @@ font-weight: 600;
 .menu {
   list-style: none;
   padding: 0.2rem 0.5rem;
-  border: 1px solid rgb(204,204,204);
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
-  border-radius: .5rem;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
   color: #555555;
   background-color: white;
   position: absolute;
@@ -990,13 +964,11 @@ font-weight: 600;
   margin: 0.3rem 0;
   border-radius: 0.5rem;
   cursor: pointer;
-
 }
 
 .menu li:hover {
   background-color: var(--navHoverColor);
 }
-
 
 /* Active styles */
 /* Added with JavaScript  */
@@ -1004,7 +976,6 @@ font-weight: 600;
 .active {
   background-color: var(--navHoverColor);
 }
-
 
 /* Open styles */
 /* Added with JavaScript  */
@@ -1014,14 +985,6 @@ font-weight: 600;
   opacity: 1;
 }
 
-
-
-
-
-
-
-
-
 /* Flag */
 .flag {
   min-width: 0 !important;
@@ -1030,24 +993,21 @@ font-weight: 600;
   border-radius: 5px;
   font-size: 1.3rem;
   background-color: white;
-  padding: .3rem .3rem;
   right: 0;
   background-color: transparent;
-  
 }
 
 .flag .select {
+  padding: 0.3rem 0rem;
   border: none;
 }
 
 .flag .menu {
   min-width: 12rem;
- right: 1rem;
+  right: 1rem;
 }
 
-
-
-.flag-row{
+.flag-row {
   display: flex;
   align-items: center;
   gap: 1rem;
