@@ -756,6 +756,8 @@ input[type="text"] {
   gap: 1rem;
 }
 
+
+
 .edit-todo-menu-actions {
   display: flex;
   width: 100%;
@@ -1012,3 +1014,251 @@ position: relative;
   align-items: center;
   gap: 1rem;
 }
+
+
+/* Dots */
+
+.dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+}
+
+.berry-red {
+  background-color: rgb(184,37,95);
+}
+
+.red {
+background-color: rgb(219,64,53);
+}
+
+.orange{
+  background-color: rgb(255,153,51);
+}
+
+.yellow {
+  background-color: rgb(250,208,0);
+}
+
+.olive-green{
+  background-color: rgb(175,184,59);
+}
+
+.lime-green{
+  background-color: rgb(126,204,73);
+}
+
+.green{
+background-color: rgb(41,148,56);
+}
+
+.mint-green{
+background-color: rgb(106,204,188);
+}
+
+.teal{
+  background-color: rgb(21,143,173);
+}
+
+.sky-blue{
+  background-color: rgb(20,170,245) ;
+
+}
+
+.light-blue{
+  background-color: rgb(150,195,235);
+
+}
+
+.blue{
+  background-color: rgb(64,115,255) ;
+
+}
+
+
+.grape{
+  background-color: rgb(136,77,255);
+
+}
+
+.violet {
+  background-color: rgb(175,56,235) ;
+
+}
+
+
+
+.lavender {
+  background-color: rgb(235,150,235);
+
+}
+
+.magenta {
+  background-color: rgb(224,81,148) ;
+
+}
+
+.salmon{
+  background-color: rgb(255,141,133) ;
+
+}
+
+.charcoal {
+  background-color: rgb(128, 128, 128);
+
+}
+
+
+.grey {
+  background-color: rgb(184,184,184);
+
+}
+
+
+.taupe {
+  background-color: rgb(204, 172, 147) ;
+}
+
+.project-modal {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  padding-top: 0rem;
+  left: 50%;
+  top: 22%;
+  transform: translate(-50%, -35%);
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-radius: 10px;
+  max-width: 35rem !important;
+  min-height: 40rem;
+  width: 100%;
+  z-index: 55 !important;  
+  overflow: hidden;
+
+}
+
+
+.project-modal-content{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem;
+
+  gap: 2rem;
+
+}
+
+.project-modal-content label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #202020;
+}
+
+.project-modal-content input {
+  border: 1px solid rgb(221,221,221);
+  border-radius: 5px;
+  padding: .5rem .5rem;
+  transition-duration: .3s;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+
+.project-modal-content .select {
+  padding: .672rem .5rem;
+  border: 1px solid rgb(221,221,221);
+  margin-top: .9rem;
+
+}
+.project-modal-content .selected {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  vertical-align: middle;
+  font-size: 1.4rem;
+  margin-left: .7rem;
+}
+
+.project-modal-content li {
+  display: flex;
+  gap: 1rem;
+  z-index: 55 !important;
+}
+
+.project-modal-content .dropdown {
+}
+
+
+.project-modal-content .menu{
+max-height: 110px; 
+overflow-y: scroll;
+top: 2.5rem;
+
+}
+
+
+
+.project-modal-content input:focus{
+  border: 1px solid rgb(128,128,128);
+}
+
+.add-project {
+  background-color: rgb(250,250,250);
+  font-size: 1.6rem;
+  color: #202020;
+  font-weight: 700;
+  border-bottom: 1px solid rgb(221,221,221);
+  overflow: hidden;
+  padding: 2rem 2rem;
+  padding-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+
+}
+
+
+
+.project-modal-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+  gap: 1rem;
+ border-top: 1px solid rgb(221,221,221);
+ background-color: rgb(250,250,250);
+
+}
+
+.project-modal-footer button {
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  padding: 0.8rem 1rem;
+}
+
+.project-modal-footer .add {
+  background-color: rgb(219,76,63);
+  color: white;
+ 
+}
+.project-modal-footer .cancel {
+  
+  background-color: rgb(243,243,243);
+  border: 1px solid rgb(221,221,221);
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

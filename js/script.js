@@ -16,8 +16,26 @@ const pencil = document.querySelector("#pencil");
 const z = document.querySelector("#z");
 const addNewTask = document.querySelector(".add-new-task");
 const modal = document.querySelector(".modal");
+const add = document.querySelector("#add");
+const addProject = document.querySelector(".project-modal");
+const addTasktest = edit-todo-menu-add-task;
+add.addEventListener("click", ()=> {
+  modal.style.backgroundColor = "rgb(0,0,0,0.5)";
+  modal.style.display = "block";
+modal.appendChild(addProject);
+addProject.style.display = "flex";
 
+function windowOnClick(event) {
+  if (event.target === modal) {
+    modal.removeChild(addProject);
+    modal.style.display = "none";
+    modal.style.backgroundColor = "transparent";
 
+  }
+}
+window.addEventListener("click", windowOnClick); 
+
+})
 
 
 
@@ -212,6 +230,16 @@ dropdowns.forEach((dropdown) => {
     menu.classList.toggle("menu-open");
   });
 
+  if(dropdown.classList.contains("dots")){
+    menu.classList.toggle("menu-open");
+  }
+
+
+
+
+
+  if(!dropdown.classList.contains("dots")){
+
   document.addEventListener("click", function(event) {
       if (
         event.target.matches(".dropdown") ||
@@ -223,7 +251,7 @@ dropdowns.forEach((dropdown) => {
     }
   )
 
-
+  } 
 
   // Add click event for each li
 
@@ -238,8 +266,9 @@ dropdowns.forEach((dropdown) => {
         selected.innerHTML = row.innerHTML;
         text.style.display = "block";
 
-      } else {
-        selected.textContent = option.textContent;
+      }
+       else {
+        selected.innerHTML = option.innerHTML;
       }
       caret.classList.remove("caret-rotate");
       menu.classList.remove("menu-open");
