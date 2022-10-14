@@ -201,7 +201,7 @@ nav span {
   color: var(--navNumberToday);
 }
 
-nav li:nth-child(4) {
+#projects-title {
   margin-top: 1.4rem;
   margin-bottom: 0.5rem;
   font-weight: 800;
@@ -235,27 +235,28 @@ li ul {
   gap: 0.5rem;
 }
 
-.projects span svg {
-  width: 1.4rem;
-  height: 1.4rem;
+.projects li .dot, .projects span svg {
+  width: 1rem;
+  height: 1rem;
+  margin: .7rem;
 }
 
-#add {
+#addProjectButton {
   background-color: transparent;
   border-style: none;
   display: flex;
   align-items: center;
-  margin-right: 0.9rem;
+  margin-right: .95rem;
   padding: 0.6rem;
 }
 
-#add svg {
+#addProjectButton svg {
   width: 1.7rem;
   height: 1.7rem;
   color: rgb(102, 102, 102);
 }
 
-#add:hover {
+#addProjectButton:hover {
   background-color: var(--navHoverColor);
   border-radius: 5px;
   cursor: pointer;
@@ -324,7 +325,7 @@ main {
   gap: 1rem;
 }
 
-.tab-title {
+.container-title {
   font-size: 2rem;
   font-weight: 900;
 }
@@ -340,17 +341,17 @@ input[type="checkbox"] {
  */
 
 /* Checkbox gray */
-.checkbox {
+.checkbox__gray {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
 }
 
-.checkbox__input {
+.checkbox__input__gray {
   display: none;
 }
 
-.checkbox__box {
+.checkbox__box__gray {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
@@ -363,7 +364,7 @@ input[type="checkbox"] {
   transition-duration: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input + .checkbox__box::after {
+.checkbox__input__gray + .checkbox__box__gray::after {
   content: url(../images/check.svg);
   height: 2.4rem;
   width: 2.4rem;
@@ -371,7 +372,7 @@ input[type="checkbox"] {
   transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.checkbox__input:hover + .checkbox__box::after {
+.checkbox__input__gray:hover + .checkbox__box__gray::after {
   content: url(../images/check.svg);
   height: 2.4rem;
   width: 2.4rem;
@@ -379,14 +380,14 @@ input[type="checkbox"] {
   opacity: 1;
 }
 
-.checkbox__input:checked + .checkbox__box::after {
+.checkbox__input__gray:checked + .checkbox__box__gray::after {
   content: url(../images/check_white.svg);
   height: 2.4rem;
   width: 2.4rem;
   opacity: 1;
 }
 
-.checkbox__input:checked + .checkbox__box {
+.checkbox__input__gray:checked + .checkbox__box__gray {
   background-color: rgb(130, 130, 130);
   animation-duration: 0.3s;
   animation-name: expand;
@@ -813,7 +814,7 @@ input[type="text"] {
   font-weight: 600;
 }
 
-.modal {
+.overlay {
   position: fixed;
   left: 0;
   top: 0;
