@@ -80,9 +80,7 @@ export class Container {
               <div class="caret"></div>
            </div>
            <ul class="menu">
-              <li class = "active">Inbox</li>
-              <li>Personal</li>
-              <li>Work</li>
+              <li class = "active", id = "1">Inbox</li>
            </ul>
         </div>
         <!-- DropDown End -->
@@ -121,7 +119,7 @@ export class Container {
                     <span class = "flag-text">Priority 3</span>
                  </div>
               </li>
-              <li class = "active">
+              <li class = "active" id = "priority4">
                  <div class="flag-row">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "gray" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="4">
                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a.5.5 0 01.223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.822 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0120 4.5V13a.5.5 0 01-.223.416c-1.09.727-2.518 1.084-4.277 1.084-1.113 0-1.92-.197-3.658-.776C10.204 13.178 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777V19.5a.5.5 0 01-1 0V5zm4.5 7c-1.367 0-2.535.216-3.5.654V5.277c.886-.515 2.05-.777 3.5-.777.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.367 0 2.535-.216 3.5-.654v7.377c-.886.515-2.05.777-3.5.777-.97 0-1.704-.178-3.342-.724C10.421 12.196 9.613 12 8.5 12z" fill="#666666"></path>
@@ -168,19 +166,55 @@ export class Container {
     return this.#todoItemContainer.appendChild(document.createRange().createContextualFragment(todoItem));
   }
 
-  generateProjectDropdown(projects) {
+  generateProjectDropdown(obj) {
 
-    let element = "";
-    for (let key of projects.keys()) {
-      element += `<li id = ${key}>${projects.get(key).getProjectName()}</li>`;
-    }
+   let projects = obj.projects;
+   let currentProjectID = obj.currentProjectID;
+   const selected = this.#editMenu.querySelector(".selected");
+   selected.textContent = `${projects.get(currentProjectID).getProjectName()}`;
+   selected.id = currentProjectID;
 
-    const dropdown = this.#editMenu.querySelector(".editMenu .menu");
-    dropdown.innerHTML = element;
+
+
+     let element = "";
+     for (let key of projects.keys()) {
+      if(key === currentProjectID){
+         element += `<li class = "active" id = ${key}>${projects.get(key).getProjectName()}</li>`;
+      } else {
+       element += `<li id = ${key}>${projects.get(key).getProjectName()}</li>`;
+      }
+     }
+
+     const dropdown = this.#editMenu.querySelector(".editMenu .menu");
+     dropdown.innerHTML = element;
+
+
+
+
+
+
+   const selectedFlag = this.#editMenu.querySelector(".flag .selected");
+   selectedFlag.innerHTML = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "gray" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="4">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a.5.5 0 01.223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.822 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0120 4.5V13a.5.5 0 01-.223.416c-1.09.727-2.518 1.084-4.277 1.084-1.113 0-1.92-.197-3.658-.776C10.204 13.178 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777V19.5a.5.5 0 01-1 0V5zm4.5 7c-1.367 0-2.535.216-3.5.654V5.277c.886-.515 2.05-.777 3.5-.777.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.367 0 2.535-.216 3.5-.654v7.377c-.886.515-2.05.777-3.5.777-.97 0-1.704-.178-3.342-.724C10.421 12.196 9.613 12 8.5 12z" fill="#666666"></path>
+                 </svg>
+                 <span class = "flag-text" style = "display: none;">Priority 4</span>`;
+
+   const active = this.#editMenu.querySelector(".flag .menu");
+   const li = active.querySelectorAll("li");
+
+   for(let i = 0; i < li.length; i++){
+      li[i].classList.remove("active");
+   }
+
+   const priority = this.#editMenu.querySelector("#priority4");
+   priority.classList.add("active");
+
+
+
 
     const hamburger = document.querySelector("header button");
 
-    const dropdowns = document.querySelectorAll(".dropdown");
+    const dropdowns = this.#editMenu.querySelectorAll(".dropdown.editMenu");
     // Loop through dropdowns
     dropdowns.forEach((dropdown) => {
       // Get inner elements
@@ -220,6 +254,22 @@ export class Container {
       });
     });
 
+
+
+
+
+
+
+
+
+
+
+
+
+   this.#editMenu.style.display = "block";
+   this.#mainContainer.replaceChild(this.#editMenu, this.#addTask);
+
+
   }
 
   render(location) {
@@ -244,14 +294,17 @@ export class Container {
   }
 
   showTaskMenu() {
-    this.#editMenu.style.display = "block";
-    this.#mainContainer.replaceChild(this.#editMenu, this.#addTask);
+
+
+   // this.#editMenu.style.display = "block";
+    pubSub.publish("Generate Dropdown for Edit Menu", "");
+   // this.#mainContainer.replaceChild(this.#editMenu, this.#addTask);
   }
 
   closeTaskMenu() {
     this.#editMenu.style.display = "none";
 
-
+    console.log("momma mia");
     const taskName = document.querySelector(".task-name");
     const description = document.querySelector("textarea");
     const date = document.querySelector("#date");
@@ -299,7 +352,6 @@ export class Container {
 
 
   addTodoToCurrentContainer(id){
-
    const taskName = document.querySelector(".task-name");
    const description = document.querySelector("textarea");
    const date = document.querySelector("#date");
@@ -339,6 +391,12 @@ export class Container {
     this.generateTodos(project.getProjectTodoItems());
 
     this.#todoItemContainer.prepend(this.#containerTitle);
+
+    if(this.#editMenu.style.display === "block"){
+      this.#editMenu.style.display = "none";
+      this.#mainContainer.replaceChild(this.#addTask, this.#editMenu);
+    }
+    
   }
 
   generateTodos(mapOfTodos) {

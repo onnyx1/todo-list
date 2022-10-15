@@ -8,9 +8,11 @@ export class Sidebar {
     this.#projectContainer = document.querySelector(".projects");
     this.createTodoProjectDOM = this.createTodoProjectDOM.bind(this);
     this.testCurrentContainer = this.testCurrentContainer.bind(this);
+    this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
     this.onClick = this.onClick.bind(this);
     pubSub.subscribe("Create Project DOM", this.createTodoProjectDOM);
     pubSub.subscribe("Should I add a todo to the current container?", this.testCurrentContainer);
+    pubSub.subscribe("Need Current Project for DropDown", this.getCurrentProjectForDropDown);
 
   }
 
@@ -60,6 +62,7 @@ export class Sidebar {
 
 
     testCurrentContainer(todo){
+      console.log("I was just called!");
 
         if(todo.getProjectLocation() === this.#currentProjectId){
             pubSub.publish("We are in the current project container, add the associated todo", todo.getID());
@@ -74,5 +77,9 @@ export class Sidebar {
     for (let value of mapOfTodos.values()) {
       this.#projectContainer.appendChild(this.createTodoProjectDOM(value.getProjectName(), value.getProjectColor(), value.getProjectTodoItems()));
     }
+  }
+
+  getCurrentProjectForDropDown(projects){
+    pubSub.publish("Show Edit Menu", {projects:projects, currentProjectID:this.#currentProjectId});
   }
 }

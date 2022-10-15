@@ -1,6 +1,4 @@
-import { createMainContainerDOM } from "./ContainerDOM.js";
-import { createTodoItemDOM } from "./createTodoItemDOM.js";
-import {todoItem as todoItem1} from "./todoItem.js"
+
 
 const hamburger = document.querySelector("header button");
 const nav = document.querySelector("nav");
@@ -32,6 +30,8 @@ import {ProjectModal} from "./ProjectModal";
 import {Container} from "./Container";
 import {Sidebar} from "./Sidebar";
 import {todoProject} from "./todoProject.js";
+import {todoItem1} from "./todoItem";
+
 let d = new ProjectManager();
 let x = new Container("Inbox");
 

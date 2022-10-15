@@ -65,6 +65,7 @@ console.log("New todo created!!!!!");
 console.log(newTodo.getDueDate());
 pubSub.publish("Add to storage", newTodo);
 pubSub.publish("Should I add a todo to the current container?", newTodo);
+console.log("bitch");
 }
 
 pubSub.subscribe("Create todo and add to storage", createTodo);

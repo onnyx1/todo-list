@@ -10,24 +10,27 @@ constructor(){
     this.addProject = this.addProject.bind(this);
     this.getProject = this.getProject.bind(this);
     this.renderProject = this.renderProject.bind(this);
+    this.getProjectsForDropdowns = this.getProjectsForDropdowns.bind(this);
     this.addTodo = this.addTodo.bind(this);
 
     pubSub.subscribe("Add Project to Project Manager",this.addProject);
     pubSub.subscribe("Changing Projects", this.renderProject);
     pubSub.subscribe("Add to storage", this.addTodo);
+    pubSub.subscribe("Generate Dropdown for Edit Menu", this.getProjectsForDropdowns);
 
 }
 
 
 addProject(project){
     this.#projects.set(project.getID(), project);
-    pubSub.publish("Show Edit Menu", this.#projects);
+    //pubSub.publish("Show Edit Menu", this.#projects);
 }
 
 addTodo(todo){
     const project = this.getProject(todo.getProjectLocation());
     project.getProjectTodoItems().set(todo.getID(), todo);
     console.log(this.#projects);
+    console.log("iggy");
 }
 
 getTodo(todo){
@@ -50,6 +53,8 @@ renderProject(projectID){
     return this.#projects.get(projectID);
 }
 
-
+getProjectsForDropdowns(empty){
+    pubSub.publish("Need Current Project for DropDown", this.#projects);
+}
 
 }
