@@ -24,7 +24,6 @@ export class todoProject {
         this.#projectTodoItems.set(id, todo);
     }
 
-
     getID(){
         return this.#id;
     }
@@ -58,3 +57,5 @@ function createProject(obj){
  }
 
 pubSub.subscribe("Create Project", createProject);
+
+

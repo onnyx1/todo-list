@@ -169,6 +169,7 @@ export class Container {
   generateProjectDropdown(obj) {
 
    let projects = obj.projects;
+   console.log(projects);
    let currentProjectID = obj.currentProjectID;
    const selected = this.#editMenu.querySelector(".selected");
    selected.textContent = `${projects.get(currentProjectID).getProjectName()}`;

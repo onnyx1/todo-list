@@ -1,7 +1,7 @@
 import { pubSub } from "./pubSub";
 
 export class Sidebar {
-  #currentProjectId;
+  #currentProjectId = "1";
   #projectContainer;
 
   constructor() {
@@ -14,6 +14,8 @@ export class Sidebar {
     pubSub.subscribe("Should I add a todo to the current container?", this.testCurrentContainer);
     pubSub.subscribe("Need Current Project for DropDown", this.getCurrentProjectForDropDown);
 
+    let inbox = document.getElementById("1");
+    inbox.onclick = this.onClick.bind(this);
   }
 
   render() {
@@ -64,6 +66,7 @@ export class Sidebar {
     testCurrentContainer(todo){
       console.log("I was just called!");
 
+      
         if(todo.getProjectLocation() === this.#currentProjectId){
             pubSub.publish("We are in the current project container, add the associated todo", todo.getID());
         } else {
