@@ -8,15 +8,18 @@ export class Container {
   #todoItemContainerID;
   #containerTitleID;
   #addTaskID;
+
   #editMenuID;
 
   #mainContainer;
   #todoItemContainer;
   #containerTitle;
   #addTask;
+
   #editMenu;
 
-
+  #savedTodo;
+  #editPressed;
 
   constructor(title) {
     this.#title = title;
@@ -25,8 +28,10 @@ export class Container {
     this.#todoItemContainerID = uuidv4();
     this.#containerTitleID = uuidv4();
     this.#addTask = uuidv4();
+
     this.#editMenuID = uuidv4();
 
+   this.#editPressed = false;
     //pubSub.subscribe("Changing Projects", this.clearContainer());
     this.renderProjectContainer = this.renderProjectContainer.bind(this);
     this.clearContainer = this.clearContainer.bind(this);
@@ -50,12 +55,14 @@ export class Container {
     <div class="todo-items-container" id = ${this.#todoItemContainerID}>
        <span class = "container-title" id = ${this.#containerTitleID}>${this.#title}</span>
     </div>
+    <div class = "container-footer">
     <button class = "add-task-button" data-action = "showTaskMenu" id = ${this.#addTaskID}>
        <div class="add-task-row" data-action = "showTaskMenu">
           <div class="add-icon" data-action = "showTaskMenu"></div>
           <div class = "add-task" data-action = "showTaskMenu">Add task</div>
        </div>
     </button>
+    </div>
 </div>
  `;
 
@@ -140,8 +147,15 @@ export class Container {
     return document.createRange().createContextualFragment(menu);
   }
 
+
+
+
+
+
+
+
   createTodoItemDOM(taskName, description, dueDate, priority, id) {
-    const todoItem = `<div class="todo-row id = ${id}">
+    const todoItem = `<div class="todo-row" id = ${id}>
     <label class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
        <input class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
        <div class="checkbox__box__${priority}"></div>
@@ -152,10 +166,10 @@ export class Container {
        <div class = "todo-date">${dueDate}</div>
     </div>
     <div class="todo-actions">
-       <svg data-action = "edit" id = ${id} xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fill-rule="evenodd">
-             <path fill="rgb(136,136,136)" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"/>
-             <path stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
+       <svg data-action = "edit" data-id = "${id}" xmlns="http://www.w3.org/2000/svg">
+          <g data-action = "edit" data-id = "${id}" fill="none" fill-rule="evenodd">
+             <path data-action = "edit" data-id = "${id}" fill="rgb(136,136,136)" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"/>
+             <path data-action = "edit" data-id = "${id}" stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
           </g>
        </svg>
        <svg style="width:20px;height:20px" viewBox="0 0 20 20">
@@ -267,8 +281,15 @@ export class Container {
 
 
 
+
+   if(this.#savedTodo){
+      console.log(this.#savedTodo);
+      this.#todoItemContainer.replaceChild(this.#savedTodo,this.#editMenu);
+   }
+   const test = this.#mainContainer.querySelector(".container-footer");
+
+   test.replaceChild(this.#editMenu, this.#addTask);
    this.#editMenu.style.display = "block";
-   this.#mainContainer.replaceChild(this.#editMenu, this.#addTask);
 
 
   }
@@ -285,6 +306,7 @@ export class Container {
 
     this.#addTask = document.getElementById(`${this.#addTaskID}`);
     this.#editMenu = document.getElementById(`${this.#editMenuID}`);
+
   }
 
   onClick(e) {
@@ -294,8 +316,25 @@ export class Container {
     }
   }
 
+
+  
+
+
+
   showTaskMenu() {
 
+   const cancelButton = this.#editMenu.querySelector(".cancel-button");
+   const addTaskButton = this.#editMenu.querySelector(".edit-todo-menu-add-task");
+ 
+   delete cancelButton.dataset.action;
+  cancelButton.dataset.action = "closeTaskMenu";
+   addTaskButton.textContent = "Add Task";
+
+   if(this.#editMenu.style.display === "block"){
+      this.#editMenu.style.display ="none";
+   }
+   this.#editMenu.style.marginTop = "0rem";
+   this.#editMenu.style.marginBottom = "0rem";
 
    // this.#editMenu.style.display = "block";
     pubSub.publish("Generate Dropdown for Edit Menu", "");
@@ -316,8 +355,9 @@ export class Container {
     description.value = "";
     date.value = "";
     flagText.value = "Priority 4"; 
-    this.#mainContainer.replaceChild(this.#addTask, this.#editMenu);
+    const test = this.#mainContainer.querySelector(".container-footer");
 
+    test.replaceChild(this.#addTask, this.#editMenu);
   }
 
   addTodo() {
@@ -348,6 +388,52 @@ export class Container {
     pubSub.publish("Create todo and add to storage",
      {taskName: taskName.value, description: description.value, date:date.value, projectLocation:projects.id, priority: priority });
 
+
+  }
+
+  edit(e){
+  
+   const test = this.#mainContainer.querySelector(".container-footer");
+
+   if(test.contains(this.#editMenu)){
+      this.closeTaskMenu();
+      this.#savedTodo = document.getElementById(e.target.dataset.id);
+      this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
+      this.#editMenu.style.display = "block";
+   
+      this.#editMenu.style.marginTop = "2rem";
+      this.#editMenu.style.marginBottom = "0rem";
+   } else {
+
+   if(this.#savedTodo){
+      this.#todoItemContainer.replaceChild(this.#savedTodo,this.#editMenu);
+      this.#editMenu.style.display = "none";
+   }
+
+   this.#savedTodo = document.getElementById(e.target.dataset.id);
+   this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
+   this.#editMenu.style.display = "block";
+
+   this.#editMenu.style.marginTop = "2rem";
+   this.#editMenu.style.marginBottom = "0rem";
+
+  }
+
+  const cancelButton = this.#editMenu.querySelector(".cancel-button");
+  delete cancelButton.dataset.action;
+  cancelButton.dataset.action = "cancelUpdate";
+  const addTaskButton = this.#editMenu.querySelector(".edit-todo-menu-add-task");
+
+  addTaskButton.textContent = "Save";
+
+
+
+  }
+
+  cancelUpdate(e){
+
+   this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu );
+   this.#savedTodo = false;
 
   }
 
@@ -394,15 +480,18 @@ export class Container {
     this.#todoItemContainer.prepend(this.#containerTitle);
 
     if(this.#editMenu.style.display === "block"){
-      this.#editMenu.style.display = "none";
-      this.#mainContainer.replaceChild(this.#addTask, this.#editMenu);
+    this.closeTaskMenu();
+    this.#savedTodo = false;
     }
     
   }
+
+
 
   generateTodos(mapOfTodos) {
     for (let value of mapOfTodos.values()) {
       this.#todoItemContainer.appendChild(this.createTodoItemDOM(value.getTaskName(), value.getDescription(), value.getDueDate(), value.getPriority(), value.getID()));
     }
+    this.#savedTodo = false;
   }
 }
