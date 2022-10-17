@@ -14,7 +14,9 @@ export class ProjectManager {
     this.getProjectsForDropdowns = this.getProjectsForDropdowns.bind(this);
     this.getProjectsForDropdowns2 = this.getProjectsForDropdowns2.bind(this);
     this.addTodo = this.addTodo.bind(this);
-
+    this.updateTodo = this.updateTodo.bind(this);
+    this.differentProjectTodo = this.differentProjectTodo.bind(this);
+    this.updateAllProjectCounters = this.updateAllProjectCounters.bind(this);
     this.addProject({
       id: "1",
       projectName: "Inbox",
@@ -52,6 +54,9 @@ export class ProjectManager {
     pubSub.subscribe("Generate Dropdown for Edit Menu", this.getProjectsForDropdowns);
     pubSub.subscribe("Update Project Counter", this.updateProjectCounter);
     pubSub.subscribe("Generate Dropdown for Edit Menu2", this.getProjectsForDropdowns2);
+    pubSub.subscribe("Update Todo", this.updateTodo);
+    pubSub.subscribe("Add Todo to different project", this.differentProjectTodo);
+
 
   }
 
@@ -71,6 +76,31 @@ export class ProjectManager {
     const project = this.getProject(todo.getProjectLocation());
     project.getProjectTodoItems().get(todo.getID());
   }
+
+  updateTodo(todo){
+    const project = this.getProject(todo.projectLocation);
+    const item = project.getProjectTodoItems().get(todo.id);
+    item.setTaskName(todo.taskName);
+    item.setDescription(todo.description);
+    item.setDueDate(todo.date);
+    item.setPriority(todo.priority);
+    console.log(this.#projects);
+  }
+
+  differentProjectTodo(object){
+    const project = this.getProject(object.currentID);
+    const item = project.getProjectTodoItems().get(object.todo.id);
+    item.setTaskName(object.todo.taskName);
+    item.setDescription(object.todo.description);
+    item.setDueDate(object.todo.date);
+    item.setPriority(object.todo.priority);
+    item.setProjectLocation(object.todo.projectLocation);
+    this.addTodo(item);
+    project.getProjectTodoItems().delete(object.todo.id);
+    document.getElementById(object.todo.id).remove();
+    this.updateAllProjectCounters();
+    console.log(this.#projects);
+}
 
   removeProject(projectID) {
     this.#projects.delete(projectID);
@@ -98,4 +128,13 @@ export class ProjectManager {
     number.textContent = project.getProjectTodoItems().size;
   }
 
+  updateAllProjectCounters(){
+    for (let key of this.#projects.keys()) {
+      const project = this.getProject(key);
+      const number = document.querySelector(`nav [data-id="${key}"] .number`);
+      console.log(number);
+      number.textContent = project.getProjectTodoItems().size;
+  }
+
+}
 }

@@ -10,12 +10,13 @@ export class Sidebar {
     this.testCurrentContainer = this.testCurrentContainer.bind(this);
     this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
     this.getCurrentProjectForDropDown2 = this.getCurrentProjectForDropDown2.bind(this);
-
+    this.testCurrentContainerUpdate = this.testCurrentContainerUpdate.bind(this);
     this.onClick = this.onClick.bind(this);
     pubSub.subscribe("Create Project DOM", this.createTodoProjectDOM);
     pubSub.subscribe("Should I add a todo to the current container?", this.testCurrentContainer);
     pubSub.subscribe("Need Current Project for DropDown", this.getCurrentProjectForDropDown);
     pubSub.subscribe("Need Current Project for DropDown2", this.getCurrentProjectForDropDown2);
+    pubSub.subscribe("Is todo in current project?", this.testCurrentContainerUpdate);
 
     let inbox = document.getElementById("1");
     inbox.onclick = this.onClick.bind(this);
@@ -77,6 +78,21 @@ export class Sidebar {
         }
 
 }
+
+
+
+testCurrentContainerUpdate(todo){
+
+
+    if(todo.projectLocation === this.#currentProjectId){
+      pubSub.publish("Update Todo", todo);
+
+    } else {
+      pubSub.publish("Add Todo to different project", {todo:todo, currentID: this.#currentProjectId} );
+    }
+
+}
+
 
 
   addTodoProjectToSidebar(MapOfProjects) {

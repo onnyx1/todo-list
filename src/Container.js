@@ -625,7 +625,6 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
   updateTodo(e){
 
 
-
    const taskName = document.querySelector(".task-name");
    const description = document.querySelector("textarea");
    const date = document.querySelector("#date");
@@ -636,28 +635,50 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
    const title = this.#savedTodo.querySelector(".todo-title");
    const description2 = this.#savedTodo.querySelector(".todo-description");
    const dueDate = this.#savedTodo.querySelector(".todo-date");
+   const label = this.#savedTodo.querySelector("label");
+   const input = label.querySelector("label > input");
+   const checkbox = label.querySelector("label > div");
 
+   label.removeAttribute('class');
+   input.removeAttribute('class');
+   checkbox.removeAttribute('class');
+
+   console.log(flagText.textContent);
    let priority;
    if (flagText.textContent === "Priority 1") {
       priority = "red";
+      label.classList.add("checkbox__red");
+      input.classList.add("checkbox__input__red");
+      checkbox.classList.add("checkbox__box__red"); 
    }
    if (flagText.textContent === "Priority 2") {
      priority = "yellow";
+     label.classList.add("checkbox__yellow");
+     input.classList.add("checkbox__input__yellow");
+     checkbox.classList.add("checkbox__box__yellow"); 
    }
 
    if (flagText.textContent === "Priority 3") {
      priority = "blue";
+     label.classList.add("checkbox__blue");
+     input.classList.add("checkbox__input__blue");
+     checkbox.classList.add("checkbox__box__blue"); 
    }
 
    if (flagText.textContent === "Priority 4") {
      priority = "gray";
+     label.classList.add("checkbox__gray");
+     input.classList.add("checkbox__input__gray");
+     checkbox.classList.add("checkbox__box__gray"); 
    }
 
    title.textContent = taskName.value;
    description2.textContent = description.value;
    dueDate.textContent = date.value;
 
-   this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu );
+
+   this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu);
+   pubSub.publish("Is todo in current project?", {id: this.#savedTodo.id, taskName: taskName.value, description: description.value, date:date.value, projectLocation:projects.id, priority: priority });
    this.#savedTodo = false;
 
   }
