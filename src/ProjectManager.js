@@ -12,6 +12,7 @@ export class ProjectManager {
     this.renderProject = this.renderProject.bind(this);
     this.updateProjectCounter = this.updateProjectCounter.bind(this);
     this.getProjectsForDropdowns = this.getProjectsForDropdowns.bind(this);
+    this.getProjectsForDropdowns2 = this.getProjectsForDropdowns2.bind(this);
     this.addTodo = this.addTodo.bind(this);
 
     this.addProject({
@@ -50,6 +51,7 @@ export class ProjectManager {
     pubSub.subscribe("Add to storage", this.addTodo);
     pubSub.subscribe("Generate Dropdown for Edit Menu", this.getProjectsForDropdowns);
     pubSub.subscribe("Update Project Counter", this.updateProjectCounter);
+    pubSub.subscribe("Generate Dropdown for Edit Menu2", this.getProjectsForDropdowns2);
 
   }
 
@@ -85,6 +87,9 @@ export class ProjectManager {
 
   getProjectsForDropdowns(empty) {
     pubSub.publish("Need Current Project for DropDown", this.#projects);
+  }
+  getProjectsForDropdowns2(empty) {
+    pubSub.publish("Need Current Project for DropDown2", this.#projects);
   }
 
   updateProjectCounter(todo){

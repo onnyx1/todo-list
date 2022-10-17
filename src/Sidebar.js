@@ -9,11 +9,13 @@ export class Sidebar {
     this.createTodoProjectDOM = this.createTodoProjectDOM.bind(this);
     this.testCurrentContainer = this.testCurrentContainer.bind(this);
     this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
+    this.getCurrentProjectForDropDown2 = this.getCurrentProjectForDropDown2.bind(this);
 
     this.onClick = this.onClick.bind(this);
     pubSub.subscribe("Create Project DOM", this.createTodoProjectDOM);
     pubSub.subscribe("Should I add a todo to the current container?", this.testCurrentContainer);
     pubSub.subscribe("Need Current Project for DropDown", this.getCurrentProjectForDropDown);
+    pubSub.subscribe("Need Current Project for DropDown2", this.getCurrentProjectForDropDown2);
 
     let inbox = document.getElementById("1");
     inbox.onclick = this.onClick.bind(this);
@@ -85,6 +87,10 @@ export class Sidebar {
 
   getCurrentProjectForDropDown(projects){
     pubSub.publish("Show Edit Menu", {projects:projects, currentProjectID:this.#currentProjectId});
+  }
+
+  getCurrentProjectForDropDown2(projects){
+    pubSub.publish("Show Edit Menu2", {projects:projects, currentProjectID:this.#currentProjectId});
   }
 
 

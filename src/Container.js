@@ -36,11 +36,14 @@ export class Container {
     this.renderProjectContainer = this.renderProjectContainer.bind(this);
     this.clearContainer = this.clearContainer.bind(this);
     this.generateProjectDropdown = this.generateProjectDropdown.bind(this);
+    this.generateProjectDropdown2 = this.generateProjectDropdown2.bind(this);
+
     this.addTodoToCurrentContainer = this.addTodoToCurrentContainer.bind(this);
     this.closeTaskMenu = this.closeTaskMenu.bind(this);
     pubSub.subscribe("Project needs rendering", this.renderProjectContainer);
     pubSub.subscribe("Show Edit Menu", this.generateProjectDropdown);
-    
+    pubSub.subscribe("Show Edit Menu2", this.generateProjectDropdown2);
+
     
     
     pubSub.subscribe("We are in the current project container, add the associated todo", this.addTodoToCurrentContainer);
@@ -72,7 +75,7 @@ export class Container {
   createEditMenu() {
     const menu = `<div class="edit-todo-menu-container" id = ${this.#editMenuID}>
   <div class="edit-todo-menu">
-     <div><input class = "task-name" type="text" placeholder="Task Name"></div>
+     <div><input class = "task-name" required type="text" placeholder="Task Name"></div>
      <div>
         <textarea name="" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="" cols="30" rows="2" placeholder="Description"></textarea>
      </div>
@@ -102,7 +105,7 @@ export class Container {
               <div class="caret" style = "display: none;"></div>
            </div>
            <ul class="menu">
-              <li>
+              <li id = "priority1">
                  <div class="flag-row">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "red" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="1">
                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#D1453B"></path>
@@ -110,7 +113,7 @@ export class Container {
                     <span class = "flag-text">Priority 1</span>
                  </div>
               </li>
-              <li>
+              <li id = "priority2">
                  <div class="flag-row">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "yellow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="2">
                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#EB8909"></path>
@@ -118,7 +121,7 @@ export class Container {
                     <span class = "flag-text">Priority 2</span>
                  </div>
               </li>
-              <li>
+              <li id = "priority3">
                  <div class="flag-row">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "blue" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="3">
                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#246FE0"></path>
@@ -294,6 +297,145 @@ export class Container {
 
   }
 
+
+
+
+  generateProjectDropdown2(obj) {
+
+
+   let projects = obj.projects;
+   console.log(projects);
+   let currentProjectID = obj.currentProjectID;
+   const selected = this.#editMenu.querySelector(".selected");
+   selected.textContent = `${projects.get(currentProjectID).getProjectName()}`;
+   selected.id = currentProjectID;
+
+
+
+     let element = "";
+     for (let key of projects.keys()) {
+      if(key === currentProjectID){
+         element += `<li class = "active" id = ${key}>${projects.get(key).getProjectName()}</li>`;
+      } else {
+       element += `<li id = ${key}>${projects.get(key).getProjectName()}</li>`;
+      }
+     }
+
+     const dropdown = this.#editMenu.querySelector(".editMenu .menu");
+     dropdown.innerHTML = element;
+
+  
+   const selectedFlag = this.#editMenu.querySelector(".flag .selected");
+   const gray = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "gray" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="4">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a.5.5 0 01.223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.822 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0120 4.5V13a.5.5 0 01-.223.416c-1.09.727-2.518 1.084-4.277 1.084-1.113 0-1.92-.197-3.658-.776C10.204 13.178 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777V19.5a.5.5 0 01-1 0V5zm4.5 7c-1.367 0-2.535.216-3.5.654V5.277c.886-.515 2.05-.777 3.5-.777.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.367 0 2.535-.216 3.5-.654v7.377c-.886.515-2.05.777-3.5.777-.97 0-1.704-.178-3.342-.724C10.421 12.196 9.613 12 8.5 12z" fill="#666666"></path>
+                 </svg>
+                 <span class = "flag-text" style = "display: none;">Priority 4</span>`;
+
+
+   const blue = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "blue" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="3">
+   <path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#246FE0"></path>
+</svg>
+<span class = "flag-text"  style = "display: none;">Priority 3</span>` ;
+
+const yellow = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "yellow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="2">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#EB8909"></path>
+</svg>
+<span class = "flag-text"  style = "display: none;">Priority 2</span>`;
+
+const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "red" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Gw1i-E3" data-icon-name="priority-icon" data-priority="1">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="#D1453B"></path>
+</svg>
+<span class = "flag-text"  style = "display: none;">Priority 1</span>`;
+
+
+   
+
+   const active = this.#editMenu.querySelector(".flag .menu");
+   const li = active.querySelectorAll("li");
+
+   for(let i = 0; i < li.length; i++){
+      li[i].classList.remove("active");
+   }
+   console.log(this.#savedTodo);
+   const label = this.#savedTodo.querySelector("label");
+
+   if(label.classList.contains("checkbox__gray")){
+      selectedFlag.innerHTML = gray;
+      const priority = this.#editMenu.querySelector("#priority4");
+      priority.classList.add("active");
+
+   }
+   if(label.classList.contains("checkbox__blue")){
+      selectedFlag.innerHTML = blue;
+      const priority = this.#editMenu.querySelector("#priority3");
+      priority.classList.add("active");
+   }
+   if(label.classList.contains("checkbox__yellow")){
+      selectedFlag.innerHTML = yellow;
+      const priority = this.#editMenu.querySelector("#priority2");
+      priority.classList.add("active");
+   }
+   if(label.classList.contains("checkbox__red")){
+      selectedFlag.innerHTML = red;
+      const priority = this.#editMenu.querySelector("#priority1");
+      priority.classList.add("active");
+   }
+
+
+
+
+
+
+    const hamburger = document.querySelector("header button");
+
+    const dropdowns = this.#editMenu.querySelectorAll(".dropdown.editMenu");
+    // Loop through dropdowns
+    dropdowns.forEach((dropdown) => {
+      // Get inner elements
+
+      const select = dropdown.querySelector(".select");
+      const selected = dropdown.querySelector(".selected");
+      const caret = dropdown.querySelector(".caret");
+      const menu = dropdown.querySelector(".menu");
+      const options = dropdown.querySelectorAll(".menu li");
+
+      // Add click event for each li
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          if (dropdown.classList.contains("flag")) {
+            const row = option.querySelector(".flag-row");
+            const text = row.querySelector(".flag-text");
+            text.style.display = "none";
+
+            selected.innerHTML = row.innerHTML;
+            text.style.display = "block";
+          } else {
+            selected.innerHTML = option.innerHTML;
+            selected.id = option.id;
+          }
+          caret.classList.remove("caret-rotate");
+          menu.classList.remove("menu-open");
+
+          // Remove active class from all li elements
+
+          options.forEach((option) => {
+            option.classList.remove("active");
+          });
+
+          option.classList.add("active");
+        });
+      });
+    });
+
+
+  }
+
+
+
+
+
+  
   render(location) {
     location.appendChild(this.createContainer());
     location.appendChild(this.createEditMenu());
@@ -327,8 +469,20 @@ export class Container {
    const addTaskButton = this.#editMenu.querySelector(".edit-todo-menu-add-task");
  
    delete cancelButton.dataset.action;
-  cancelButton.dataset.action = "closeTaskMenu";
+   cancelButton.dataset.action = "closeTaskMenu";
+
+   delete addTaskButton.dataset.action;
+   addTaskButton.dataset.action = "addTodo";
+
    addTaskButton.textContent = "Add Task";
+
+   const taskName = this.#editMenu.querySelector(".task-name");
+   const description = this.#editMenu.querySelector("textarea");
+   const date = this.#editMenu.querySelector("#date");
+  
+   taskName.value = "";
+   description.value = "";
+   date.value = "";
 
    if(this.#editMenu.style.display === "block"){
       this.#editMenu.style.display ="none";
@@ -356,8 +510,8 @@ export class Container {
     date.value = "";
     flagText.value = "Priority 4"; 
     const test = this.#mainContainer.querySelector(".container-footer");
-
     test.replaceChild(this.#addTask, this.#editMenu);
+    this.#savedTodo = false;
   }
 
   addTodo() {
@@ -393,11 +547,27 @@ export class Container {
 
   edit(e){
   
+
    const test = this.#mainContainer.querySelector(".container-footer");
 
    if(test.contains(this.#editMenu)){
       this.closeTaskMenu();
       this.#savedTodo = document.getElementById(e.target.dataset.id);
+
+   const taskName = this.#editMenu.querySelector(".task-name");
+   const description = this.#editMenu.querySelector("textarea");
+   const date = this.#editMenu.querySelector("#date");
+  
+
+   const title = this.#savedTodo.querySelector(".todo-title");
+   const description2 = this.#savedTodo.querySelector(".todo-description");
+   const dueDate = this.#savedTodo.querySelector(".todo-date");
+
+   taskName.value = title.textContent;
+   description.value = description2.textContent;
+   date.value = dueDate.textContent;
+   pubSub.publish("Generate Dropdown for Edit Menu2", "");
+
       this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
       this.#editMenu.style.display = "block";
    
@@ -411,6 +581,23 @@ export class Container {
    }
 
    this.#savedTodo = document.getElementById(e.target.dataset.id);
+   pubSub.publish("Generate Dropdown for Edit Menu2", "");
+
+
+   const taskName = this.#editMenu.querySelector(".task-name");
+   const description = this.#editMenu.querySelector("textarea");
+   const date = this.#editMenu.querySelector("#date");
+  
+
+   const title = this.#savedTodo.querySelector(".todo-title");
+   const description2 = this.#savedTodo.querySelector(".todo-description");
+   const dueDate = this.#savedTodo.querySelector(".todo-date");
+
+   taskName.value = title.textContent;
+   description.value = description2.textContent;
+   date.value = dueDate.textContent;
+
+
    this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
    this.#editMenu.style.display = "block";
 
@@ -420,17 +607,55 @@ export class Container {
   }
 
   const cancelButton = this.#editMenu.querySelector(".cancel-button");
-  delete cancelButton.dataset.action;
   cancelButton.dataset.action = "cancelUpdate";
   const addTaskButton = this.#editMenu.querySelector(".edit-todo-menu-add-task");
+  delete addTaskButton.dataset.action;
 
   addTaskButton.textContent = "Save";
-
-
-
+  addTaskButton.dataset.action = "updateTodo";
   }
 
   cancelUpdate(e){
+
+   this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu );
+   this.#savedTodo = false;
+
+  }
+
+  updateTodo(e){
+
+
+
+   const taskName = document.querySelector(".task-name");
+   const description = document.querySelector("textarea");
+   const date = document.querySelector("#date");
+   const projects = document.querySelector(".dropdown.editMenu .selected");
+   const flagText = document.querySelector(".flag .selected .flag-text");
+
+
+   const title = this.#savedTodo.querySelector(".todo-title");
+   const description2 = this.#savedTodo.querySelector(".todo-description");
+   const dueDate = this.#savedTodo.querySelector(".todo-date");
+
+   let priority;
+   if (flagText.textContent === "Priority 1") {
+      priority = "red";
+   }
+   if (flagText.textContent === "Priority 2") {
+     priority = "yellow";
+   }
+
+   if (flagText.textContent === "Priority 3") {
+     priority = "blue";
+   }
+
+   if (flagText.textContent === "Priority 4") {
+     priority = "gray";
+   }
+
+   title.textContent = taskName.value;
+   description2.textContent = description.value;
+   dueDate.textContent = date.value;
 
    this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu );
    this.#savedTodo = false;
