@@ -15,9 +15,10 @@ export class ProjectModal {
     <div class="project-modal">
        <div class = "add-project">Add Project</div>
        <div class="project-modal-content">
+       <form id = "myForm">
           <div>
              <label for="">Name</label>
-             <input type="text">
+             <input required maxlength = 25 type="text">
           </div>
           <div class = "dropdown-container">
              <label for="">Color</label>
@@ -97,7 +98,7 @@ export class ProjectModal {
                       <div class="salmon dot"></div>
                       Salmon
                    </li>
-                   <li class = "active">
+                   <li class = "active" id = "charcoal-dot">
                       <div class="charcoal dot"></div>
                       Charcoal
                    </li>
@@ -113,8 +114,9 @@ export class ProjectModal {
              </div>
           </div>
        </div>
-       <div class = "project-modal-footer"> <button class = "cancel">Cancel</button> <button class = "add" data-action = "addProject">Add</button></div>
-    </div>
+       <div class = "project-modal-footer"> <button class = "cancel" data-action = "cancel">Cancel</button> <button type="submit" form = "myForm" class = "add" data-action = "addProject">Add</button></div>
+    </form>
+   </div>
     `;
     return document.createRange().createContextualFragment(projectModal);
   }
@@ -132,6 +134,11 @@ export class ProjectModal {
       this.#overlay.style.display = "block";
       this.#overlay.appendChild(this.#projectModal);
       this.#projectModal.style.display = "flex";
+      this.resetMenu();
+
+   
+
+
     });
 
     this.#projectModal = document.querySelector(".project-modal");
@@ -163,19 +170,25 @@ export class ProjectModal {
   onClick(e) {
     let action = e.target.dataset.action;
     if (action) {
-      this[action](e);
+     this[action](e);
     } else if (e.target === this.#overlay){
         this.removeOverlay();
     } 
   }
 
   addProject() {
+
+    if(this.#projectNameInput.checkValidity()){
+      
     const color = document.querySelector(".project-modal .selected .dot");
     pubSub.publish("Create Project", {projectName: this.#projectNameInput.value, projectColor: color.outerHTML});
 
-    this.#overlay.removeChild(this.#projectModal);
-    this.#overlay.style.display = "none";
-    this.#overlay.style.backgroundColor = "transparent";
+    this.removeOverlay();
+    }
+  }
+
+  cancel(){
+   this.removeOverlay();
   }
 
   removeOverlay() {
@@ -184,5 +197,18 @@ export class ProjectModal {
     this.#overlay.style.backgroundColor = "transparent";
   }
 
+  resetMenu(){
+
+   document.querySelector(".dots .menu").classList.remove("menu-open");
+   document.querySelector(".dots .selected").innerHTML = "<div class='charcoal dot'></div>Charcoal";
+   const dots = document.querySelectorAll(".dots .menu li");
+
+   for(let i = 0; i < dots.length; i++){
+      dots[i].classList.remove("active");
+   }
+   document.getElementById("charcoal-dot").classList.add("active");
+   this.#projectNameInput.value = "";
+
+  }
  
 }

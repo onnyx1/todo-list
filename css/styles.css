@@ -631,7 +631,7 @@ input[type="checkbox"] {
   height: 100%;
   gap: 1rem;
   margin-left: auto;
-  /* opacity: 0; */
+  opacity: 0; 
 }
 
 #calendar {
@@ -644,9 +644,9 @@ input[type="checkbox"] {
   height: 2.4rem;
 }
 
-/* .todo-row:hover .todo-actions{
+ .todo-row:hover .todo-actions{
   opacity: 1;
-} */
+} 
 
 /* Todo Item Buttons End */
 
@@ -967,6 +967,13 @@ position: relative;
   z-index: 1;
 }
 
+/* project menu styles*/
+.editMenu .menu {
+  width: min-content;
+  white-space: nowrap;
+}
+
+
 .menu li {
   padding: 0.7rem 0.5rem;
   margin: 0.3rem 0;
@@ -1137,15 +1144,15 @@ background-color: rgb(106,204,188);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
   border-radius: 10px;
   max-width: 35rem !important;
-  min-height: 40rem;
+  min-height: 40rem; 
   width: 100%;
   z-index: 55 !important;  
-  overflow: hidden;
+  /* overflow: hidden; */
 
 }
 
 
-.project-modal-content{
+.project-modal-content form{
   display: flex;
   flex-direction: column;
   padding: 2rem 2rem;
@@ -1197,6 +1204,7 @@ background-color: rgb(106,204,188);
 
 .project-modal-content .menu{
 max-height: 110px; 
+max-height: 240px; 
 overflow-y: scroll;
 top: 2.5rem;
 
