@@ -12,7 +12,6 @@ const checkbox = document.querySelector(".checkbox__input__gray");
 const label = document.querySelector(".checkbox");
 const addTask = document.querySelector(".add-task-button");
 const todoMenu = document.querySelector(".edit-todo-menu-container");
-const mainContainer = document.querySelector(".main-container");
 const taskName = document.querySelector(".task-name");
 const pencil = document.querySelector("#pencil");
 const z = document.querySelector("#z");
@@ -355,3 +354,17 @@ dropdowns.forEach((dropdown) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+const todoItems = document.querySelector(".todo-items-container");
+
+
+// Contextual Menu

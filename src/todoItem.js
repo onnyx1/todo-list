@@ -69,5 +69,15 @@ pubSub.publish("Update Project Counter", newTodo);
 
 }
 
+function duplicate(todo){
+  const newTodo = new todoItem(todo.taskName,todo.description,todo.date,todo.projectLocation, todo.priority);
+  console.log(newTodo);
+  pubSub.publish("Add to storage", newTodo);
+  pubSub.publish("Update Project Counter", newTodo);
+  pubSub.publish("Add duplicated todo", newTodo);
+
+}
+
 pubSub.subscribe("Create todo and add to storage", createTodo);
 
+pubSub.subscribe("duplicate todo", duplicate);

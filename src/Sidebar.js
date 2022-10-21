@@ -11,6 +11,7 @@ export class Sidebar {
     this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
     this.getCurrentProjectForDropDown2 = this.getCurrentProjectForDropDown2.bind(this);
     this.testCurrentContainerUpdate = this.testCurrentContainerUpdate.bind(this);
+    this.activeProject = this.activeProject.bind(this);
     this.onClick = this.onClick.bind(this);
     pubSub.subscribe("Create Project DOM", this.createTodoProjectDOM);
     pubSub.subscribe("Should I add a todo to the current container?", this.testCurrentContainer);
@@ -60,11 +61,25 @@ export class Sidebar {
     let action = e.target.dataset.id;
     if(action){
         this.#currentProjectId = e.target.dataset.id;
+        this.activeProject();
         pubSub.publish("Changing Projects", e.target.dataset.id);
     }
 
   }
  
+
+  activeProject(){
+    const projects = this.#projectContainer.querySelectorAll("li");
+
+    document.getElementById("1").classList.remove("activeProject");
+    for(let i = 0; i < projects.length; i++){
+      projects[i].classList.remove("activeProject");
+   }
+
+   document.getElementById(this.#currentProjectId).classList.add("activeProject");
+
+  }
+
 
 
     testCurrentContainer(todo){

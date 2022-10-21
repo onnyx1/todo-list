@@ -15,10 +15,9 @@ export class ProjectModal {
     <div class="project-modal">
        <div class = "add-project">Add Project</div>
        <div class="project-modal-content">
-       <form id = "myForm">
           <div>
-             <label for="">Name</label>
-             <input required maxlength = 25 type="text">
+             <label for="projectName">Name</label>
+             <input required maxlength = 25  type="text" id = "projectName">
           </div>
           <div class = "dropdown-container">
              <label for="">Color</label>
@@ -114,7 +113,7 @@ export class ProjectModal {
              </div>
           </div>
        </div>
-       <div class = "project-modal-footer"> <button class = "cancel" data-action = "cancel">Cancel</button> <button type="submit" form = "myForm" class = "add" data-action = "addProject">Add</button></div>
+       <div class = "project-modal-footer"> <button class = "cancel" data-action = "cancel">Cancel</button> <button  class = "add" data-action = "addProject">Add</button></div>
     </form>
    </div>
     `;
@@ -178,13 +177,12 @@ export class ProjectModal {
 
   addProject() {
 
-    if(this.#projectNameInput.checkValidity()){
       
     const color = document.querySelector(".project-modal .selected .dot");
     pubSub.publish("Create Project", {projectName: this.#projectNameInput.value, projectColor: color.outerHTML});
 
     this.removeOverlay();
-    }
+    
   }
 
   cancel(){
@@ -211,4 +209,6 @@ export class ProjectModal {
 
   }
  
+  
+
 }

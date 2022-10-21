@@ -212,6 +212,11 @@ ul li:not(.no-hover):hover {
   border-radius: 5px;
 }
 
+.activeProject {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+}
+
 svg {
   width: 2rem;
   height: 2rem;
@@ -596,6 +601,13 @@ input[type="checkbox"] {
   gap: 0.3rem;
 }
 
+
+.task-name {
+
+}
+
+
+
 .todo-title {
   font-size: 1.4rem;
   color: var(--navTextColor);
@@ -730,9 +742,7 @@ input[type="text"] {
   color: var(--navTextColor);
 }
 
-.task-name{
- 
-}
+
 
 .edit-todo-menu textarea {
   font-size: 1.3rem;
@@ -753,7 +763,7 @@ input[type="text"] {
   opacity: 0.9;
 }
 
-.edit-todo-menu {
+.edit-todo-menu  {
   border: 1px solid rgb(229, 229, 229);
   border-radius: 15px;
   padding: 1rem;
@@ -971,6 +981,7 @@ position: relative;
 .editMenu .menu {
   width: min-content;
   white-space: nowrap;
+  min-width: 100px;
 }
 
 
@@ -1152,7 +1163,7 @@ background-color: rgb(106,204,188);
 }
 
 
-.project-modal-content form{
+.project-modal-content {
   display: flex;
   flex-direction: column;
   padding: 2rem 2rem;
@@ -1269,10 +1280,120 @@ top: 2.5rem;
 
 
 
+/* Contextual Menu */
+
+
+
+
+.wrapper {
+  position: absolute;
+  width: 200px;
+  visibility: hidden;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 10px;
+  transform-origin: top left;
+  transform: scale(0);
+  transition: transform 200ms ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.appear {
+  visibility: visible;
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
+}
+
+.wrapper .contextMenu {
+ 
+  margin-top: .4rem;
+  margin-bottom: .4rem;
+
+  padding: 0px;
+}
+
+.contextMenu svg {
+  width: 20px;
+  height: 20px;
+}
+
+.content .item {
+  list-style: none;
+  font-size: 13px;
+  height: 40px;
+  padding: 0 5px 0 10px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  font-weight: 400;
+
+}
+
+
+
+
+.move {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
 
 
 
 
 
+
+
+.content .item:hover{
+  background: #f2f2f2;
+}
+
+.content .item span {
+  margin-left: 15px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #202020;
+  margin-top: .6rem;
+}
+
+
+
+
+.content .share {
+  justify-content: space-between;
+  position: relative;
+}
+
+.share span {
+  margin-left: 15px !important;
+}
+
+.share .share-menu{
+  position: absolute;
+  background: #ffffff;
+  width: 200px;
+  padding: 0px;
+  right: -200px;
+  top: -35px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 10px;
+  padding: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2 ease;
+  border: 1px solid #ddd;
+}
+
+.share-menu span {
+  color: #202020;
+
+}
+
+.share:hover .share-menu {
+  opacity: 1;
+  pointer-events: auto;
+}
 

@@ -17,7 +17,9 @@ export class Container {
   #addTask;
 
   #editMenu;
-
+  #contextMenu;
+  #shareMenu;
+  #contextSelection;
   #savedTodo;
   #editPressed;
 
@@ -32,17 +34,22 @@ export class Container {
     this.#editMenuID = uuidv4();
 
    this.#editPressed = false;
+   this.render = this.render.bind(this);
     //pubSub.subscribe("Changing Projects", this.clearContainer());
+    this.duplicateContext = this.duplicateContext.bind(this);
+    this.duplicateStuff = this.duplicateStuff.bind(this);
+    this.editStuff =this.editStuff.bind(this);
     this.renderProjectContainer = this.renderProjectContainer.bind(this);
     this.clearContainer = this.clearContainer.bind(this);
     this.generateProjectDropdown = this.generateProjectDropdown.bind(this);
     this.generateProjectDropdown2 = this.generateProjectDropdown2.bind(this);
-
+    this.addTodoDuplicate = this.addTodoDuplicate.bind(this);
     this.addTodoToCurrentContainer = this.addTodoToCurrentContainer.bind(this);
     this.closeTaskMenu = this.closeTaskMenu.bind(this);
     pubSub.subscribe("Project needs rendering", this.renderProjectContainer);
     pubSub.subscribe("Show Edit Menu", this.generateProjectDropdown);
     pubSub.subscribe("Show Edit Menu2", this.generateProjectDropdown2);
+    pubSub.subscribe("Add duplicated todo", this.addTodoDuplicate);
 
     
     
@@ -56,8 +63,8 @@ export class Container {
   createContainer() {
     let container = `<div class = "main-container" id = ${this.#mainContainerID}>
     <div class="todo-items-container" id = ${this.#todoItemContainerID}>
-       <span class = "container-title" id = ${this.#containerTitleID}>${this.#title}</span>
-    </div>
+       <span class = "container-title" id = "1">${this.#title}</span>
+       </div>
     <div class = "container-footer">
     <button class = "add-task-button" data-action = "showTaskMenu" id = ${this.#addTaskID}>
        <div class="add-task-row" data-action = "showTaskMenu">
@@ -158,7 +165,7 @@ export class Container {
 
 
   createTodoItemDOM(taskName, description, dueDate, priority, id) {
-    const todoItem = `<div class="todo-row" id = ${id}>
+    let todoItem = `<div class="todo-row" id = ${id}>
     <label class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
        <input class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
        <div class="checkbox__box__${priority}"></div>
@@ -180,8 +187,39 @@ export class Container {
        </svg>
     </div>
  </div>`;
+
+ if(dueDate === ""){
+   todoItem = `<div class="todo-row" id = ${id}>
+   <label class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
+      <input class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
+      <div class="checkbox__box__${priority}"></div>
+   </label>
+   <div class="todo-column">
+      <div class = "todo-title">${taskName}</div>
+      <div class = "todo-description">${description}</div>
+      <div class = "todo-date" style = "display:none">${dueDate}</div>
+
+   </div>
+   <div class="todo-actions">
+      <svg data-action = "edit" data-id = "${id}" xmlns="http://www.w3.org/2000/svg">
+         <g data-action = "edit" data-id = "${id}" fill="none" fill-rule="evenodd">
+            <path data-action = "edit" data-id = "${id}" fill="rgb(136,136,136)" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"/>
+            <path data-action = "edit" data-id = "${id}" stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
+         </g>
+      </svg>
+      <svg style="width:20px;height:20px" viewBox="0 0 20 20">
+         <path fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
+      </svg>
+   </div>
+</div>`;
+ }
+
     return this.#todoItemContainer.appendChild(document.createRange().createContextualFragment(todoItem));
   }
+
+
+
+
 
   generateProjectDropdown(obj) {
 
@@ -437,19 +475,98 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
 
   
   render(location) {
+
+
     location.appendChild(this.createContainer());
     location.appendChild(this.createEditMenu());
+
 
     this.#mainContainer = document.getElementById(`${this.#mainContainerID}`);
     this.#mainContainer.onclick = this.onClick.bind(this);
 
     this.#todoItemContainer = document.getElementById(`${this.#todoItemContainerID}`);
-    this.#containerTitle = document.getElementById(`${this.#containerTitleID}`);
+    this.#containerTitle = document.querySelector(`.container-title`);
 
     this.#addTask = document.getElementById(`${this.#addTaskID}`);
     this.#editMenu = document.getElementById(`${this.#editMenuID}`);
 
+    this.#contextMenu = document.querySelector(".wrapper");
+    this.#shareMenu =document.querySelector(".share-menu");
+
+
+
+    
+this.#todoItemContainer.addEventListener("contextmenu", e => {
+    e.preventDefault(); // prevent default menu
+
+    this.#contextSelection = e.target.closest(".todo-row").id; 
+    let x = e.clientX;
+    let y = e.clientY;
+
+    
+
+    const winWidth = window.innerWidth;
+    const cmWidth = this.#contextMenu.clientWidth;
+
+    console.log("x " + x);
+    console.log("context menu " + cmWidth);
+
+    console.log("y " + y);
+    console.log("window " + winWidth);
+
+    const winHeight = window.innerHeight;
+    const cmHeight = this.#contextMenu.clientWidth;
+
+
+    if(x > (winWidth - cmWidth - this.#shareMenu.offsetWidth)){
+      this.#shareMenu.style.left = "-200px";
+    } else {
+      this.#shareMenu.style.left = "";
+      this.#shareMenu.style.right = "-200px";
+
+    }
+
+
+    // if x is greater than the window width, we set x
+    // to allow it to still appear on the page
+    x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
+    y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
+
+
+    this.#contextMenu.style.left = `${x}px`;
+    this.#contextMenu.style.top = `${y}px`;
+
+    this.#contextMenu.classList.remove("appear");
+
+    this.#contextMenu.classList.add("appear");
+
+
+    document.querySelector(".wrapper .edit").removeEventListener("click", this.editStuff);
+    document.querySelector(".wrapper .duplicate").removeEventListener("click", this.duplicateStuff);
+
+    document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
+
+    document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
+
+   
+})
+
+document.addEventListener("click", () => {
+   this.#contextMenu.classList.remove("appear");
+})
+
   }
+
+
+  editStuff(){
+
+   this.editContext(this.#contextSelection);
+ }
+
+duplicateStuff(todo) {
+
+   this.duplicateContext(this.#contextSelection);
+ }
 
   onClick(e) {
     let action = e.target.dataset.action;
@@ -458,8 +575,6 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
     }
   }
 
-
-  
 
 
 
@@ -516,7 +631,12 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
 
   addTodo() {
 
+
+   
+
     const taskName = document.querySelector(".task-name");
+
+
     const description = document.querySelector("textarea");
     const date = document.querySelector("#date");
     const projects = document.querySelector(".dropdown.editMenu .selected");
@@ -542,11 +662,9 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
     pubSub.publish("Create todo and add to storage",
      {taskName: taskName.value, description: description.value, date:date.value, projectLocation:projects.id, priority: priority });
 
-
   }
 
   edit(e){
-  
 
    const test = this.#mainContainer.querySelector(".container-footer");
 
@@ -615,6 +733,112 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
   addTaskButton.dataset.action = "updateTodo";
   }
 
+
+
+
+
+  editContext(e) {
+
+   const test = this.#mainContainer.querySelector(".container-footer");
+
+   if(test.contains(this.#editMenu)){
+      this.closeTaskMenu();
+      this.#savedTodo = document.getElementById(e);
+
+   const taskName = this.#editMenu.querySelector(".task-name");
+   const description = this.#editMenu.querySelector("textarea");
+   const date = this.#editMenu.querySelector("#date");
+  
+
+   const title = this.#savedTodo.querySelector(".todo-title");
+   const description2 = this.#savedTodo.querySelector(".todo-description");
+   const dueDate = this.#savedTodo.querySelector(".todo-date");
+
+   taskName.value = title.textContent;
+   description.value = description2.textContent;
+   date.value = dueDate.textContent;
+   pubSub.publish("Generate Dropdown for Edit Menu2", "");
+
+      this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
+      this.#editMenu.style.display = "block";
+   
+      this.#editMenu.style.marginTop = "2rem";
+      this.#editMenu.style.marginBottom = "0rem";
+   } else {
+
+   if(this.#savedTodo){
+      this.#todoItemContainer.replaceChild(this.#savedTodo,this.#editMenu);
+      this.#editMenu.style.display = "none";
+   }
+
+   this.#savedTodo = document.getElementById(e);
+   pubSub.publish("Generate Dropdown for Edit Menu2", "");
+
+
+   const taskName = this.#editMenu.querySelector(".task-name");
+   const description = this.#editMenu.querySelector("textarea");
+   const date = this.#editMenu.querySelector("#date");
+  
+
+   const title = this.#savedTodo.querySelector(".todo-title");
+   const description2 = this.#savedTodo.querySelector(".todo-description");
+   const dueDate = this.#savedTodo.querySelector(".todo-date");
+
+   taskName.value = title.textContent;
+   description.value = description2.textContent;
+   date.value = dueDate.textContent;
+
+
+   this.#todoItemContainer.replaceChild(this.#editMenu, this.#savedTodo);
+   this.#editMenu.style.display = "block";
+
+   this.#editMenu.style.marginTop = "2rem";
+   this.#editMenu.style.marginBottom = "0rem";
+  }
+
+  const cancelButton = this.#editMenu.querySelector(".cancel-button");
+  cancelButton.dataset.action = "cancelUpdate";
+  const addTaskButton = this.#editMenu.querySelector(".edit-todo-menu-add-task");
+  delete addTaskButton.dataset.action;
+
+  addTaskButton.textContent = "Save";
+  addTaskButton.dataset.action = "updateTodo";
+
+  }
+
+  duplicateContext(todo){
+console.log("This was just called");
+   const item = document.getElementById(todo);
+   const title = item.querySelector(".todo-title");
+   const description2 = item.querySelector(".todo-description");
+   const dueDate = item.querySelector(".todo-date");
+   const label = item.querySelector("label");
+   const input = label.querySelector("label > input");
+   const checkbox = label.querySelector("label > div");
+
+   let priority = "";
+   if(label.classList.contains("checkbox__gray")){
+      priority = "gray";
+   }
+   if(label.classList.contains("checkbox__blue")){
+      priority = "blue";
+ 
+   }
+   if(label.classList.contains("checkbox__yellow")){
+      priority = "yellow";
+
+   }
+   if(label.classList.contains("checkbox__red")){
+      priority = "red";
+   }
+
+
+   pubSub.publish("duplicate todo",
+   {taskName: title.textContent, description: description2.textContent, date:dueDate.textContent, projectLocation:this.#containerTitle.id, priority: priority });
+
+
+  }
+
   cancelUpdate(e){
 
    this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu );
@@ -672,10 +896,17 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
      checkbox.classList.add("checkbox__box__gray"); 
    }
 
+   if(date.value === ""){
+      dueDate.style.display = "none";
+   }
+
    title.textContent = taskName.value;
    description2.textContent = description.value;
    dueDate.textContent = date.value;
 
+   if(dueDate.textContent !== ""){
+      dueDate.style.display = "flex";
+   }
 
    this.#todoItemContainer.replaceChild(this.#savedTodo, this.#editMenu);
    pubSub.publish("Is todo in current project?", {id: this.#savedTodo.id, taskName: taskName.value, description: description.value, date:date.value, projectLocation:projects.id, priority: priority });
@@ -709,6 +940,32 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
    this.closeTaskMenu();
   }
 
+
+  addTodoDuplicate(todo){
+   if (todo.getPriority() === "red") {
+     this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "red", todo.getID());
+     console.log("Bitch1")
+   }
+   if (todo.getPriority() === "yellow") {
+     this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "yellow", todo.getID());
+     console.log("Bitch2")
+
+   }
+
+   if (todo.getPriority() === "blue") {
+     this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "blue", todo.getID());
+     console.log("Bitch3")
+
+   }
+
+   if (todo.getPriority() === "gray") {
+     this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "gray", todo.getID());
+     console.log("Bitch4")
+
+   }
+
+  }
+
   setTitle(title) {
     this.#containerTitle.textContent = title;
   }
@@ -719,6 +976,8 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
 
   renderProjectContainer(project) {
     this.clearContainer();
+    this.#containerTitle.id = project.getID();
+
     this.setTitle(project.getProjectName());
 
     this.generateTodos(project.getProjectTodoItems());
