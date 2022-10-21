@@ -45,6 +45,7 @@ export class Container {
     this.generateProjectDropdown = this.generateProjectDropdown.bind(this);
     this.generateProjectDropdown2 = this.generateProjectDropdown2.bind(this);
     this.addTodoDuplicate = this.addTodoDuplicate.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
     this.generateProjectsForContext =this.generateProjectsForContext.bind(this);
     this.addTodoToCurrentContainer = this.addTodoToCurrentContainer.bind(this);
     this.closeTaskMenu = this.closeTaskMenu.bind(this);
@@ -492,9 +493,13 @@ generateProjectsForContext(projects){
      const li = dropdown.querySelectorAll("li");
 
    for(let i = 0; i < li.length; i++){
+      if(li[i].id === this.#containerTitle.id){
+
+      } else {
       li[i].addEventListener("click", (e) => {
          this.moveToProjectStuff(e.target.id);
       })
+   }
    }
 
 }
@@ -571,12 +576,13 @@ this.#todoItemContainer.addEventListener("contextmenu", e => {
     document.querySelector(".wrapper .edit").removeEventListener("click", this.editStuff);
     document.querySelector(".wrapper .duplicate").removeEventListener("click", this.duplicateStuff);
     document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
+    document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo)
 
     document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
-
     document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
     document.querySelector(".wrapper .moveProject").addEventListener("click", this.moveToProjectStuff)
-   
+    document.querySelector(".wrapper .delete").addEventListener("click", this.deleteTodo)
+
 })
 
 document.addEventListener("click", () => {
@@ -598,6 +604,10 @@ duplicateStuff() {
 
  moveToProjectStuff(projectID){
    pubSub.publish("Move todo", {projectID: projectID, todoId: this.#contextSelection, currentProject: this.#containerTitle.id});
+ }
+
+ deleteTodo(){
+pubSub.publish("Delete Todo", {currentProject: this.#containerTitle.id, todoID: this.#contextSelection});
  }
 
   onClick(e) {

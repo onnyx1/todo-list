@@ -17,6 +17,7 @@ export class ProjectManager {
     this.sendProjects = this.sendProjects.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
     this.differentProjectTodo = this.differentProjectTodo.bind(this);
     this.updateAllProjectCounters = this.updateAllProjectCounters.bind(this);
     this.addProject({
@@ -60,7 +61,8 @@ export class ProjectManager {
     pubSub.subscribe("Add Todo to different project", this.differentProjectTodo);
     pubSub.subscribe("Move todo", this.moveToProject);
     pubSub.subscribe("Get Projects",this.sendProjects);
-
+    pubSub.subscribe("Delete Todo", this.deleteTodo);
+    // {currentProject: this.#containerTitle.id, todoID: this.#contextSelection}
 
   }
 
@@ -89,6 +91,14 @@ export class ProjectManager {
     item.setDueDate(todo.date);
     item.setPriority(todo.priority);
     console.log(this.#projects);
+  }
+
+  deleteTodo(object){
+
+    const project = this.getProject(object.currentProject);
+    project.getProjectTodoItems().delete(object.todoID);
+    document.getElementById(object.todoID).remove();
+    this.updateAllProjectCounters();
   }
 
   moveToProject(object){
