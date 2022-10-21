@@ -1397,3 +1397,10 @@ top: 2.5rem;
   pointer-events: auto;
 }
 
+.share-menu .dot {
+  margin-right: 1rem;
+  margin-left: .35rem;
+}
+.share-menu svg {
+  margin-right: .55rem;
+}

@@ -39,17 +39,20 @@ export class Container {
     this.duplicateContext = this.duplicateContext.bind(this);
     this.duplicateStuff = this.duplicateStuff.bind(this);
     this.editStuff =this.editStuff.bind(this);
+    this.moveToProjectStuff = this.moveToProjectStuff.bind(this);
     this.renderProjectContainer = this.renderProjectContainer.bind(this);
     this.clearContainer = this.clearContainer.bind(this);
     this.generateProjectDropdown = this.generateProjectDropdown.bind(this);
     this.generateProjectDropdown2 = this.generateProjectDropdown2.bind(this);
     this.addTodoDuplicate = this.addTodoDuplicate.bind(this);
+    this.generateProjectsForContext =this.generateProjectsForContext.bind(this);
     this.addTodoToCurrentContainer = this.addTodoToCurrentContainer.bind(this);
     this.closeTaskMenu = this.closeTaskMenu.bind(this);
     pubSub.subscribe("Project needs rendering", this.renderProjectContainer);
     pubSub.subscribe("Show Edit Menu", this.generateProjectDropdown);
     pubSub.subscribe("Show Edit Menu2", this.generateProjectDropdown2);
     pubSub.subscribe("Add duplicated todo", this.addTodoDuplicate);
+    pubSub.subscribe("Sending projects for context menu", this.generateProjectsForContext);
 
     
     
@@ -470,7 +473,31 @@ const red = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" data-flagColor = "r
   }
 
 
+generateProjectsForContext(projects){
 
+   let element = "";
+     for (let key of projects.keys()) {
+      console.log(`${projects.get(key).getProjectColor()}`);
+      if(key === this.#containerTitle.id){
+         element += `<li class = "item active" id = ${key}> ${projects.get(key).getProjectColor()} ${projects.get(key).getProjectName()}</li>`;
+      } else {
+       element += `<li class = "item" id = ${key}>${projects.get(key).getProjectColor()} ${projects.get(key).getProjectName()}</li>`;
+      }
+     }
+
+
+     const dropdown = document.querySelector(".share-menu");
+     dropdown.innerHTML = element;
+
+     const li = dropdown.querySelectorAll("li");
+
+   for(let i = 0; i < li.length; i++){
+      li[i].addEventListener("click", (e) => {
+         this.moveToProjectStuff(e.target.id);
+      })
+   }
+
+}
 
 
   
@@ -503,7 +530,7 @@ this.#todoItemContainer.addEventListener("contextmenu", e => {
     let x = e.clientX;
     let y = e.clientY;
 
-    
+    pubSub.publish("Get Projects", "");
 
     const winWidth = window.innerWidth;
     const cmWidth = this.#contextMenu.clientWidth;
@@ -543,11 +570,12 @@ this.#todoItemContainer.addEventListener("contextmenu", e => {
 
     document.querySelector(".wrapper .edit").removeEventListener("click", this.editStuff);
     document.querySelector(".wrapper .duplicate").removeEventListener("click", this.duplicateStuff);
+    document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
 
     document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
 
     document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
-
+    document.querySelector(".wrapper .moveProject").addEventListener("click", this.moveToProjectStuff)
    
 })
 
@@ -563,9 +591,13 @@ document.addEventListener("click", () => {
    this.editContext(this.#contextSelection);
  }
 
-duplicateStuff(todo) {
+duplicateStuff() {
 
    this.duplicateContext(this.#contextSelection);
+ }
+
+ moveToProjectStuff(projectID){
+   pubSub.publish("Move todo", {projectID: projectID, todoId: this.#contextSelection, currentProject: this.#containerTitle.id});
  }
 
   onClick(e) {
@@ -944,23 +976,19 @@ console.log("This was just called");
   addTodoDuplicate(todo){
    if (todo.getPriority() === "red") {
      this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "red", todo.getID());
-     console.log("Bitch1")
    }
    if (todo.getPriority() === "yellow") {
      this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "yellow", todo.getID());
-     console.log("Bitch2")
 
    }
 
    if (todo.getPriority() === "blue") {
      this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "blue", todo.getID());
-     console.log("Bitch3")
 
    }
 
    if (todo.getPriority() === "gray") {
      this.createTodoItemDOM(todo.getTaskName(), todo.getDescription(), todo.getDueDate(), "gray", todo.getID());
-     console.log("Bitch4")
 
    }
 
