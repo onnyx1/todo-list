@@ -186,8 +186,8 @@ export class Container {
              <path data-action = "edit" data-id = "${id}" stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
           </g>
        </svg>
-       <svg style="width:20px;height:20px" viewBox="0 0 20 20">
-          <path fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
+       <svg  data-action = "options" style="width:20px;height:20px" viewBox="0 0 20 20">
+          <path class = "options" data-action = "options" fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
        </svg>
     </div>
  </div>`;
@@ -205,14 +205,14 @@ export class Container {
 
    </div>
    <div class="todo-actions">
-      <svg data-action = "edit" data-id = "${id}" xmlns="http://www.w3.org/2000/svg">
-         <g data-action = "edit" data-id = "${id}" fill="none" fill-rule="evenodd">
-            <path data-action = "edit" data-id = "${id}" fill="rgb(136,136,136)" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"/>
-            <path data-action = "edit" data-id = "${id}" stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
+      <svg  data-action = "edit" data-id = "${id}" xmlns="http://www.w3.org/2000/svg">
+         <g  data-action = "edit" data-id = "${id}" fill="none" fill-rule="evenodd">
+            <path  data-action = "edit" data-id = "${id}" fill="rgb(136,136,136)" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"/>
+            <path  data-action = "edit" data-id = "${id}" stroke="rgb(126,126,126)" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"/>
          </g>
       </svg>
-      <svg style="width:20px;height:20px" viewBox="0 0 20 20">
-         <path fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
+      <svg  data-action = "options" style="width:20px;height:20px" viewBox="0 0 20 20">
+         <path  data-action = "options" fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
       </svg>
    </div>
 </div>`;
@@ -585,8 +585,16 @@ this.#todoItemContainer.addEventListener("contextmenu", e => {
 
 })
 
-document.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+
+   if(e.target.dataset.action === "options"){
+
+   } else {
    this.#contextMenu.classList.remove("appear");
+
+   const p = document.getElementById(this.#contextSelection);
+   p.querySelector(".todo-actions").style.opacity = "0";
+   }
 })
 
   }
@@ -617,7 +625,67 @@ pubSub.publish("Delete Todo", {currentProject: this.#containerTitle.id, todoID: 
     }
   }
 
+options(e){
 
+   this.#contextSelection = e.target.closest(".todo-row").id; 
+
+
+   const p = document.getElementById(this.#contextSelection);
+   p.querySelector(".todo-actions").style.opacity = "1";
+
+   let x = e.clientX;
+   let y = e.clientY;
+
+   pubSub.publish("Get Projects", "");
+
+   const winWidth = window.innerWidth;
+   const cmWidth = this.#contextMenu.clientWidth;
+
+   console.log("x " + x);
+   console.log("context menu " + cmWidth);
+
+   console.log("y " + y);
+   console.log("window " + winWidth);
+
+   const winHeight = window.innerHeight;
+   const cmHeight = this.#contextMenu.clientWidth;
+
+
+   if(x > (winWidth - cmWidth - this.#shareMenu.offsetWidth)){
+     this.#shareMenu.style.left = "-200px";
+   } else {
+     this.#shareMenu.style.left = "";
+     this.#shareMenu.style.right = "-200px";
+
+   }
+
+
+   // if x is greater than the window width, we set x
+   // to allow it to still appear on the page
+   x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
+   y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
+
+
+   this.#contextMenu.style.left = `${x}px`;
+   this.#contextMenu.style.top = `${y}px`;
+
+   this.#contextMenu.classList.remove("appear");
+
+   this.#contextMenu.classList.add("appear");
+
+
+   document.querySelector(".wrapper .edit").removeEventListener("click", this.editStuff);
+   document.querySelector(".wrapper .duplicate").removeEventListener("click", this.duplicateStuff);
+   document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff);
+   document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo);
+
+   document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
+   document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
+   document.querySelector(".wrapper .moveProject").addEventListener("click", this.moveToProjectStuff);
+   document.querySelector(".wrapper .delete").addEventListener("click", this.deleteTodo);
+
+  
+}
 
 
   showTaskMenu() {

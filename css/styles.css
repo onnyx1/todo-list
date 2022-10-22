@@ -657,8 +657,10 @@ input[type="checkbox"] {
 }
 
  .todo-row:hover .todo-actions{
-  opacity: 1;
+  opacity: 1 !important;
 } 
+
+
 
 /* Todo Item Buttons End */
 
@@ -727,6 +729,12 @@ input[type="date"] {
 }
 
 input[type="date"]:hover {
+  background-color: var(--navHoverColor);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.options:hover, .edits:hover {
   background-color: var(--navHoverColor);
   border-radius: 5px;
   transition: 0.3s;
@@ -1340,12 +1348,6 @@ top: 2.5rem;
   display: flex;
   align-items: center;
 }
-
-
-
-
-
-
 
 
 .content .item:hover{
