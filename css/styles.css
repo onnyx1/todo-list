@@ -660,7 +660,22 @@ input[type="checkbox"] {
   opacity: 1 !important;
 } 
 
+.todoProject svg {
+  display: none;
+  margin: 0px !important;
+}
 
+.todoProject:hover svg{
+display: block;
+margin-right: 1.5rem !important;
+margin-bottom: .2rem !important;
+}
+
+
+.todoProject:hover .number{
+  display: none;
+  }
+  
 
 /* Todo Item Buttons End */
 
@@ -1295,7 +1310,19 @@ top: 2.5rem;
 
 .wrapper {
   position: absolute;
-  width: 200px;
+  width: 175px;
+  visibility: hidden;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 10px;
+  transform-origin: top left;
+  transform: scale(0);
+  transition: transform 200ms ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+.wrapper1 {
+  position: absolute;
+  width: 160px;
   visibility: hidden;
   background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 10px;
@@ -1320,6 +1347,14 @@ top: 2.5rem;
   padding: 0px;
 }
 
+.wrapper1 .contextMenu {
+ 
+  margin-top: .6rem;
+  margin-bottom: .6rem;
+
+  padding: 0px;
+}
+
 .contextMenu svg {
   width: 20px;
   height: 20px;
@@ -1340,7 +1375,9 @@ top: 2.5rem;
 
 }
 
-
+.activeTodoItem {
+  background-color: rgb(238,238,238);
+}
 
 
 .move {

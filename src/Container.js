@@ -170,9 +170,9 @@ export class Container {
 
   createTodoItemDOM(taskName, description, dueDate, priority, id) {
     let todoItem = `<div class="todo-row" id = ${id}>
-    <label class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
-       <input class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
-       <div class="checkbox__box__${priority}"></div>
+    <label data-action = "checked" class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
+       <input data-action = "checked" class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
+       <div data-action = "checked" class="checkbox__box__${priority}"></div>
     </label>
     <div class="todo-column">
        <div class = "todo-title">${taskName}</div>
@@ -194,9 +194,9 @@ export class Container {
 
  if(dueDate === ""){
    todoItem = `<div class="todo-row" id = ${id}>
-   <label class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
-      <input class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
-      <div class="checkbox__box__${priority}"></div>
+   <label data-action = "checked" class = "checkbox__${priority}" for="myCheckboxId__${priority}${id}">
+      <input data-action = "checked" class = "checkbox__input__${priority}" type="checkbox" name="myCheckboxName__${priority}" id="myCheckboxId__${priority}${id}">
+      <div data-action = "checked" class="checkbox__box__${priority}"></div>
    </label>
    <div class="todo-column">
       <div class = "todo-title">${taskName}</div>
@@ -530,8 +530,13 @@ generateProjectsForContext(projects){
     
 this.#todoItemContainer.addEventListener("contextmenu", e => {
     e.preventDefault(); // prevent default menu
+    document.querySelector(".wrapper1").classList.remove("appear");
+    if(document.getElementById(this.#contextSelection) !== null){
 
+    document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
+    }
     this.#contextSelection = e.target.closest(".todo-row").id; 
+    document.getElementById(this.#contextSelection).classList.add("activeTodoItem");
     let x = e.clientX;
     let y = e.clientY;
 
@@ -588,12 +593,15 @@ this.#todoItemContainer.addEventListener("contextmenu", e => {
 document.addEventListener("click", (e) => {
 
    if(e.target.dataset.action === "options"){
-
    } else {
    this.#contextMenu.classList.remove("appear");
-
+   if(document.getElementById(this.#contextSelection) !== null){
+   document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
    const p = document.getElementById(this.#contextSelection);
    p.querySelector(".todo-actions").style.opacity = "0";
+   }
+   document.querySelector(".wrapper1").classList.remove("appear");
+  
    }
 })
 
@@ -601,22 +609,34 @@ document.addEventListener("click", (e) => {
 
 
   editStuff(){
+   document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
 
    this.editContext(this.#contextSelection);
  }
 
 duplicateStuff() {
+   document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
 
    this.duplicateContext(this.#contextSelection);
  }
 
  moveToProjectStuff(projectID){
+   document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
+
    pubSub.publish("Move todo", {projectID: projectID, todoId: this.#contextSelection, currentProject: this.#containerTitle.id});
  }
 
  deleteTodo(){
+   document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
+
 pubSub.publish("Delete Todo", {currentProject: this.#containerTitle.id, todoID: this.#contextSelection});
  }
+
+checked(e){
+   setTimeout(() => {
+      pubSub.publish("Delete Todo", {currentProject: this.#containerTitle.id, todoID: e.target.closest(".todo-row").id});
+          }, 300);
+}
 
   onClick(e) {
     let action = e.target.dataset.action;
@@ -629,6 +649,7 @@ options(e){
 
    this.#contextSelection = e.target.closest(".todo-row").id; 
 
+   document.querySelector(".wrapper1").classList.remove("appear");
 
    const p = document.getElementById(this.#contextSelection);
    p.querySelector(".todo-actions").style.opacity = "1";

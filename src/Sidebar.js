@@ -42,7 +42,11 @@ export class Sidebar {
             ${newProject.getProjectName()} 
         </span>
     </a>
-     <span class="number" data-id = ${newProject.getID()}>${newProject.getProjectTodoItems().size}</span>
+     <span class="number" data-id = ${newProject.getID()}> ${newProject.getProjectTodoItems().size}</span>
+     <svg  class = "options" data-action = "options" data-id = ${newProject.getID()} style="width:20px;height:20px" viewBox="0 0 20 20">
+     <path data-action = "options" data-id = ${newProject.getID()} fill="rgb(146,146,146)" d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
+  </svg>
+     
 </li>
 `;
 
@@ -53,6 +57,60 @@ export class Sidebar {
 
     createdProject.onclick = this.onClick.bind(this);
  
+    const option = document.getElementById(`${newProject.getID()}`);
+
+
+
+
+
+    option.querySelector(".options").addEventListener("click", (e) => {
+
+      document.querySelector(".wrapper").classList.remove("appear");
+
+      let menu = document.querySelector(".projectContextMenu");
+   let x = e.clientX;
+   let y = e.clientY;
+
+
+   const winWidth = window.innerWidth;
+   const cmWidth = menu.clientWidth;
+
+   console.log("x " + x);
+   console.log("context menu " + cmWidth);
+
+   console.log("y " + y);
+   console.log("window " + winWidth);
+
+   const winHeight = window.innerHeight;
+   const cmHeight = menu.clientWidth;
+
+
+
+   // if x is greater than the window width, we set x
+   // to allow it to still appear on the page
+   x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
+   y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
+
+
+   menu.style.left = `${x}px`;
+   menu.style.top = `${y}px`;
+
+   menu.classList.remove("appear");
+
+   menu.classList.add("appear");
+
+
+   document.querySelector(".projectContextMenu .edit").removeEventListener("click", this.editStuff);
+   document.querySelector(".projectContextMenu .duplicate").removeEventListener("click", this.duplicateStuff);
+   document.querySelector(".projectContextMenu .moveProject").removeEventListener("click", this.moveToProjectStuff);
+   document.querySelector(".projectContextMenu .delete").removeEventListener("click", this.deleteTodo);
+
+   document.querySelector(".projectContextMenu .edit").addEventListener("click", this.editStuff);
+   document.querySelector(".projectContextMenu .duplicate").addEventListener("click", this.duplicateStuff);
+   document.querySelector(".projectContextMenu .moveProject").addEventListener("click", this.moveToProjectStuff);
+   document.querySelector(".projectContextMenu .delete").addEventListener("click", this.deleteTodo);
+
+    })
 
   }
 
