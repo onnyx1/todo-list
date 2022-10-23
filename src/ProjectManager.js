@@ -4,7 +4,6 @@ export class ProjectManager {
   #projects;
 
   constructor() {
-    this.#projects = new Map();
 
     //this.addProject({getID(){return "1";}, getProjectName(){return "Inbox"}})
     this.addProject = this.addProject.bind(this);
@@ -20,8 +19,12 @@ export class ProjectManager {
     this.updateTodo = this.updateTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+    this.updateProject = this.updateProject.bind(this);
     this.differentProjectTodo = this.differentProjectTodo.bind(this);
     this.updateAllProjectCounters = this.updateAllProjectCounters.bind(this);
+
+    if(!(localStorage.getItem('projects'))){
+      this.#projects = new Map();
     this.addProject({
       id: "1",
       projectName: "Inbox",
@@ -52,6 +55,11 @@ export class ProjectManager {
         return this.projectTodoItems;
       },
     });
+  } else {
+    this.#projects = new Map(JSON.parse(localStorage.getItem("projects")));
+  }
+
+
 
     pubSub.subscribe("Add Project to Project Manager", this.addProject);
     pubSub.subscribe("Changing Projects", this.renderProject);
@@ -65,14 +73,32 @@ export class ProjectManager {
     pubSub.subscribe("Get Projects",this.sendProjects);
     pubSub.subscribe("Delete Todo", this.deleteTodo);
     pubSub.subscribe("Delete Project", this.deleteProject);
+    pubSub.subscribe("Update Todo With Information", this.updateProject );
+
 
     // {currentProject: this.#containerTitle.id, todoID: this.#contextSelection}
 
   }
 
+  updateProject(project){
+
+    let proj = this.#projects.get(project.id);
+    proj.setProjectColor(project.color);
+    proj.setProjectName(project.name);
+
+
+    let projDOM = document.getElementById(`${project.id}`);
+    projDOM.querySelector(".dot").replaceWith(document.createRange().createContextualFragment(project.color)); 
+    projDOM.querySelector("a span").textContent = project.name;
+    console.log(this.#projects);
+    localStorage.setItem('projects', this.#projects);
+  }
+
   addProject(project) {
     this.#projects.set(project.getID(), project);
     //pubSub.publish("Show Edit Menu", this.#projects);
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   addTodo(todo) {
@@ -80,11 +106,15 @@ export class ProjectManager {
     project.getProjectTodoItems().set(todo.getID(), todo);
     console.log(this.#projects);
     console.log("iggy");
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   getTodo(todo) {
     const project = this.getProject(todo.getProjectLocation());
     project.getProjectTodoItems().get(todo.getID());
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   updateTodo(todo){
@@ -95,6 +125,8 @@ export class ProjectManager {
     item.setDueDate(todo.date);
     item.setPriority(todo.priority);
     console.log(this.#projects);
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   deleteTodo(object){
@@ -103,6 +135,8 @@ export class ProjectManager {
     project.getProjectTodoItems().delete(object.todoID);
     document.getElementById(object.todoID).remove();
     this.updateAllProjectCounters();
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   moveToProject(object){
@@ -119,6 +153,7 @@ export class ProjectManager {
     document.getElementById(object.todoId).remove();
     this.updateAllProjectCounters();
     console.log(this.#projects);
+    localStorage.setItem('projects', this.#projects);
 
   }
 
@@ -128,6 +163,8 @@ export class ProjectManager {
    this.#projects.delete(`${id}`);
     document.getElementById(id).remove();
     document.getElementById("1").click();
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   sendProjects(){
@@ -148,10 +185,14 @@ export class ProjectManager {
     document.getElementById(object.todo.id).remove();
     this.updateAllProjectCounters();
     console.log(this.#projects);
+    localStorage.setItem('projects', this.#projects);
+
 }
 
   removeProject(projectID) {
     this.#projects.delete(projectID);
+    localStorage.setItem('projects', this.#projects);
+
   }
 
   getProject(projectID) {

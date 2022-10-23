@@ -40,6 +40,13 @@ export class todoProject {
         return this.#projectTodoItems;
     }
 
+    setProjectName(value){
+        this.#projectName = value;
+    }
+
+    setProjectColor(value){
+        this.#projectColor = value;
+    }
 
 }
 

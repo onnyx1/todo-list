@@ -5,9 +5,13 @@ export class ProjectModal {
   #addProjectButton;
   #projectModal;
   #projectNameInput;
-
+  #editProjectID;
   constructor() {
     this.render();
+    this.updateProject = this.updateProject.bind(this);
+    this.update = this.update.bind(this);
+    pubSub.subscribe("Update Project", this.updateProject);
+
   }
 
   createProjectModal() {
@@ -129,6 +133,12 @@ export class ProjectModal {
     this.#addProjectButton = document.querySelector("#addProjectButton");
 
     this.#addProjectButton.addEventListener("click", () => {
+
+      this.#projectModal.querySelector(".add").textContent = "Add";
+      this.#projectModal.querySelector(".add").dataset.action = "addProject";
+
+      // add action
+
       this.#overlay.style.backgroundColor = "rgb(0,0,0,0.5)";
       this.#overlay.style.display = "block";
       this.#overlay.appendChild(this.#projectModal);
@@ -182,7 +192,51 @@ export class ProjectModal {
     pubSub.publish("Create Project", {projectName: this.#projectNameInput.value, projectColor: color.outerHTML});
 
     this.removeOverlay();
-    
+  }
+
+
+  updateProject(id){
+   this.#editProjectID = id;
+   this.#overlay.style.backgroundColor = "rgb(0,0,0,0.5)";
+   this.#overlay.style.display = "block";
+   this.#overlay.appendChild(this.#projectModal);
+   this.#projectModal.style.display = "flex";
+   this.resetMenu();
+
+   this.#projectModal.querySelector(".add").textContent = "Update";
+ 
+   delete this.#projectModal.querySelector(".add").dataset.action;
+   this.#projectModal.querySelector(".add").dataset.action = "update";
+
+   const projectDOM = document.getElementById(id);
+   let projectColor = projectDOM.querySelector(".dot");
+   let projectName = projectDOM.querySelector("a span");
+   this.#projectNameInput.value = "";
+   this.#projectNameInput.value = projectName.textContent;
+
+
+   
+   document.querySelector(".dots .menu").classList.remove("menu-open");
+   const dots = document.querySelectorAll(".dots .menu li");
+
+   for(let i = 0; i < dots.length; i++){
+      if(dots[i].querySelector(".dot").className === projectColor.className){
+         dots[i].classList.add("active");
+         document.querySelector(".dots .selected").innerHTML = dots[i].innerHTML;
+
+      } else {
+      dots[i].classList.remove("active");
+      }
+   }
+
+
+  }
+
+  update(){
+   const color = document.querySelector(".project-modal .selected .dot");
+
+   pubSub.publish("Update Todo With Information", {id: this.#editProjectID, color:  color.outerHTML, name: this.#projectNameInput.value  });
+   this.removeOverlay();
   }
 
   cancel(){

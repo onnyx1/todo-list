@@ -12,6 +12,7 @@ export class Sidebar {
     this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
     this.getCurrentProjectForDropDown2 = this.getCurrentProjectForDropDown2.bind(this);
     this.testCurrentContainerUpdate = this.testCurrentContainerUpdate.bind(this);
+    this.editProject = this.editProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
     this.options = this.options.bind(this);
     this.activeProject = this.activeProject.bind(this);
@@ -76,9 +77,11 @@ this.#projectContainer.addEventListener("contextmenu", e => {
   menu.classList.add("appear");
 
 
-   menu.querySelector(".deleteProject").removeEventListener("click", this.deleteProject);
-   menu.querySelector(".deleteProject").addEventListener("click", this.deleteProject);
+  menu.querySelector(".deleteProject").removeEventListener("click", this.deleteProject);
+  menu.querySelector(".deleteProject").addEventListener("click", this.deleteProject);
 
+  menu.querySelector(".editProject").removeEventListener("click", this.editProject);
+  menu.querySelector(".editProject").addEventListener("click", this.editProject);
   // document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
   // document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo)
 
@@ -105,11 +108,8 @@ this.#projectContainer.addEventListener("contextmenu", e => {
     const project = 
     `
 <li data-id = ${newProject.getID()} id = ${newProject.getID()} class = "todoProject">
-    <a href="#" data-id = ${newProject.getID()}  >
-         ${newProject.getProjectColor()}
-        <span data-id = ${newProject.getID()} >
-            ${newProject.getProjectName()} 
-        </span>
+    <a href="#" data-id = ${newProject.getID()}>${newProject.getProjectColor()}
+        <span data-id = ${newProject.getID()} >${newProject.getProjectName()}</span>
     </a>
      <span class="number" data-id = ${newProject.getID()}> ${newProject.getProjectTodoItems().size}</span>
      <svg  class = "options" data-action = "options" data-id = ${newProject.getID()} style="width:20px;height:20px" viewBox="0 0 20 20">
@@ -187,6 +187,9 @@ options(e) {
    menu.querySelector(".deleteProject").removeEventListener("click", this.deleteProject);
    menu.querySelector(".deleteProject").addEventListener("click", this.deleteProject);
 
+   menu.querySelector(".editProject").removeEventListener("click", this.editProject);
+   menu.querySelector(".editProject").addEventListener("click", this.editProject);
+
   // document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
   // document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo)
 
@@ -199,6 +202,9 @@ options(e) {
 
   deleteProject(e){
     pubSub.publish("Delete Project", this.#context);
+  }
+  editProject(e){
+    pubSub.publish("Update Project", this.#context);
   }
 
   activeProject(){
