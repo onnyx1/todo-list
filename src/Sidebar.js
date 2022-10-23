@@ -4,6 +4,7 @@ export class Sidebar {
   #currentProjectId = "1";
   #projectContainer;
 
+  #context;
   constructor() {
     this.#projectContainer = document.querySelector(".projects");
     this.createTodoProjectDOM = this.createTodoProjectDOM.bind(this);
@@ -11,6 +12,8 @@ export class Sidebar {
     this.getCurrentProjectForDropDown = this.getCurrentProjectForDropDown.bind(this);
     this.getCurrentProjectForDropDown2 = this.getCurrentProjectForDropDown2.bind(this);
     this.testCurrentContainerUpdate = this.testCurrentContainerUpdate.bind(this);
+    this.deleteProject = this.deleteProject.bind(this);
+    this.options = this.options.bind(this);
     this.activeProject = this.activeProject.bind(this);
     this.onClick = this.onClick.bind(this);
     pubSub.subscribe("Create Project DOM", this.createTodoProjectDOM);
@@ -21,6 +24,72 @@ export class Sidebar {
 
     let inbox = document.getElementById("1");
     inbox.onclick = this.onClick.bind(this);
+
+
+
+
+    
+this.#projectContainer.addEventListener("contextmenu", e => {
+  e.preventDefault(); // prevent default menu
+
+  this.#context = e.target.dataset.id;
+  const menu = document.querySelector(".projectContextMenu");
+
+  document.querySelector(".wrapper").classList.remove("appear");
+  // if(document.getElementById(this.#contextSelection) !== null){
+
+  // document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
+  // }
+  // this.#contextSelection = e.target.closest(".todo-row").id; 
+  // document.getElementById(this.#contextSelection).classList.add("activeTodoItem");
+  let x = e.clientX;
+  let y = e.clientY;
+
+
+  const winWidth = window.innerWidth;
+  const cmWidth = menu.clientWidth;
+
+  console.log("x " + x);
+  console.log("context menu " + cmWidth);
+
+  console.log("y " + y);
+  console.log("window " + winWidth);
+
+  const winHeight = window.innerHeight;
+  const cmHeight = menu.clientWidth;
+
+
+
+
+
+  // if x is greater than the window width, we set x
+  // to allow it to still appear on the page
+  x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
+  y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
+
+
+  menu.style.left = `${x}px`;
+  menu.style.top = `${y}px`;
+
+  menu.classList.remove("appear");
+
+  menu.classList.add("appear");
+
+
+   menu.querySelector(".deleteProject").removeEventListener("click", this.deleteProject);
+   menu.querySelector(".deleteProject").addEventListener("click", this.deleteProject);
+
+  // document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
+  // document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo)
+
+  // document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
+  // document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
+  // document.querySelector(".wrapper .moveProject").addEventListener("click", this.moveToProjectStuff)
+  // document.querySelector(".wrapper .delete").addEventListener("click", this.deleteTodo)
+
+})
+
+
   }
 
   render() {
@@ -56,75 +125,81 @@ export class Sidebar {
 
 
     createdProject.onclick = this.onClick.bind(this);
- 
-    const option = document.getElementById(`${newProject.getID()}`);
-
-
-
-
-
-    option.querySelector(".options").addEventListener("click", (e) => {
-
-      document.querySelector(".wrapper").classList.remove("appear");
-
-      let menu = document.querySelector(".projectContextMenu");
-   let x = e.clientX;
-   let y = e.clientY;
-
-
-   const winWidth = window.innerWidth;
-   const cmWidth = menu.clientWidth;
-
-   console.log("x " + x);
-   console.log("context menu " + cmWidth);
-
-   console.log("y " + y);
-   console.log("window " + winWidth);
-
-   const winHeight = window.innerHeight;
-   const cmHeight = menu.clientWidth;
-
-
-
-   // if x is greater than the window width, we set x
-   // to allow it to still appear on the page
-   x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
-   y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
-
-
-   menu.style.left = `${x}px`;
-   menu.style.top = `${y}px`;
-
-   menu.classList.remove("appear");
-
-   menu.classList.add("appear");
-
-
-   document.querySelector(".projectContextMenu .edit").removeEventListener("click", this.editStuff);
-   document.querySelector(".projectContextMenu .duplicate").removeEventListener("click", this.duplicateStuff);
-   document.querySelector(".projectContextMenu .moveProject").removeEventListener("click", this.moveToProjectStuff);
-   document.querySelector(".projectContextMenu .delete").removeEventListener("click", this.deleteTodo);
-
-   document.querySelector(".projectContextMenu .edit").addEventListener("click", this.editStuff);
-   document.querySelector(".projectContextMenu .duplicate").addEventListener("click", this.duplicateStuff);
-   document.querySelector(".projectContextMenu .moveProject").addEventListener("click", this.moveToProjectStuff);
-   document.querySelector(".projectContextMenu .delete").addEventListener("click", this.deleteTodo);
-
-    })
-
   }
 
   onClick(e) {
-
-    let action = e.target.dataset.id;
-    if(action){
-        this.#currentProjectId = e.target.dataset.id;
-        this.activeProject();
-        pubSub.publish("Changing Projects", e.target.dataset.id);
+    if(e.target.dataset.action === "options"){
+        this.options(e);
+    } else {
+      let action = e.target.dataset.id;
+      this.#currentProjectId = e.target.dataset.id;
+      this.activeProject();
+      pubSub.publish("Changing Projects", e.target.dataset.id);
     }
-
   }
  
+options(e) {
+
+  this.#context = e.target.dataset.id;
+  const menu = document.querySelector(".projectContextMenu");
+
+  document.querySelector(".wrapper").classList.remove("appear");
+  // if(document.getElementById(this.#contextSelection) !== null){
+
+  // document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
+  // }
+  // this.#contextSelection = e.target.closest(".todo-row").id; 
+  // document.getElementById(this.#contextSelection).classList.add("activeTodoItem");
+  let x = e.clientX;
+  let y = e.clientY;
+
+
+  const winWidth = window.innerWidth;
+  const cmWidth = menu.clientWidth;
+
+  console.log("x " + x);
+  console.log("context menu " + cmWidth);
+
+  console.log("y " + y);
+  console.log("window " + winWidth);
+
+  const winHeight = window.innerHeight;
+  const cmHeight = menu.clientWidth;
+
+
+
+
+
+  // if x is greater than the window width, we set x
+  // to allow it to still appear on the page
+  x = x > winWidth - cmWidth ? winWidth - cmWidth : x;
+  y = y > winHeight - cmHeight ? winHeight - cmHeight : y;
+
+
+  menu.style.left = `${x}px`;
+  menu.style.top = `${y}px`;
+
+  menu.classList.remove("appear");
+
+  menu.classList.add("appear");
+
+
+   menu.querySelector(".deleteProject").removeEventListener("click", this.deleteProject);
+   menu.querySelector(".deleteProject").addEventListener("click", this.deleteProject);
+
+  // document.querySelector(".wrapper .moveProject").removeEventListener("click", this.moveToProjectStuff)
+  // document.querySelector(".wrapper .delete").removeEventListener("click", this.deleteTodo)
+
+  // document.querySelector(".wrapper .edit").addEventListener("click", this.editStuff);
+  // document.querySelector(".wrapper .duplicate").addEventListener("click", this.duplicateStuff);
+  // document.querySelector(".wrapper .moveProject").addEventListener("click", this.moveToProjectStuff)
+  // document.querySelector(".wrapper .delete").addEventListener("click", this.deleteTodo)
+}
+
+
+  deleteProject(e){
+    pubSub.publish("Delete Project", this.#context);
+  }
 
   activeProject(){
     const projects = this.#projectContainer.querySelectorAll("li");

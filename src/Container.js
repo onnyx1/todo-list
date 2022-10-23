@@ -595,6 +595,8 @@ document.addEventListener("click", (e) => {
    if(e.target.dataset.action === "options"){
    } else {
    this.#contextMenu.classList.remove("appear");
+   const menu = document.querySelector(".projectContextMenu");
+   menu.classList.remove("appear");
    if(document.getElementById(this.#contextSelection) !== null){
    document.getElementById(this.#contextSelection).classList.remove("activeTodoItem");
    const p = document.getElementById(this.#contextSelection);

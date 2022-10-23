@@ -14,10 +14,12 @@ export class ProjectManager {
     this.getProjectsForDropdowns = this.getProjectsForDropdowns.bind(this);
     this.getProjectsForDropdowns2 = this.getProjectsForDropdowns2.bind(this);
     this.moveToProject = this.moveToProject.bind(this);
+    this.dele
     this.sendProjects = this.sendProjects.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.deleteProject = this.deleteProject.bind(this);
     this.differentProjectTodo = this.differentProjectTodo.bind(this);
     this.updateAllProjectCounters = this.updateAllProjectCounters.bind(this);
     this.addProject({
@@ -62,6 +64,8 @@ export class ProjectManager {
     pubSub.subscribe("Move todo", this.moveToProject);
     pubSub.subscribe("Get Projects",this.sendProjects);
     pubSub.subscribe("Delete Todo", this.deleteTodo);
+    pubSub.subscribe("Delete Project", this.deleteProject);
+
     // {currentProject: this.#containerTitle.id, todoID: this.#contextSelection}
 
   }
@@ -118,6 +122,13 @@ export class ProjectManager {
 
   }
 
+  deleteProject(id){
+    console.log(id);
+    console.log(this.#projects);
+   this.#projects.delete(`${id}`);
+    document.getElementById(id).remove();
+    document.getElementById("1").click();
+  }
 
   sendProjects(){
     pubSub.publish("Sending projects for context menu", this.#projects);
