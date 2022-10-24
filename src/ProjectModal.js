@@ -6,12 +6,12 @@ export class ProjectModal {
   #projectModal;
   #projectNameInput;
   #editProjectID;
+
   constructor() {
     this.render();
     this.updateProject = this.updateProject.bind(this);
     this.update = this.update.bind(this);
     pubSub.subscribe("Update Project", this.updateProject);
-
   }
 
   createProjectModal() {
@@ -133,7 +133,6 @@ export class ProjectModal {
     this.#addProjectButton = document.querySelector("#addProjectButton");
 
     this.#addProjectButton.addEventListener("click", () => {
-
       this.#projectModal.querySelector(".add").textContent = "Add";
       this.#projectModal.querySelector(".add").dataset.action = "addProject";
 
@@ -144,103 +143,69 @@ export class ProjectModal {
       this.#overlay.appendChild(this.#projectModal);
       this.#projectModal.style.display = "flex";
       this.resetMenu();
-
-   
-
-
     });
 
     this.#projectModal = document.querySelector(".project-modal");
     this.#projectNameInput = document.querySelector(".project-modal input");
   }
 
-
-
-  //   function overlayOnClick(event) {
-  //     if (event.target === modal) {
-  //         this.#overlay.removeChild(addProject);
-  //         this.#overlay.style.display = "none";
-  //         this.#overlay.style.backgroundColor = "transparent";
-  //     } else if (event.target.dataset.action) {
-  //       if (event.target.dataset.action === "add") {
-  //         const color = document.querySelector(".project-modal .selected .dot");
-  //         pubSub.publish("projectCreated", 5);
-  //         this.createTodoProjectDOM(input.value, color.outerHTML, new Map());
-  //         this.#overlay.removeChild(this.#projectModal);
-  //         this.#overlay.style.display = "none";
-  //         this.#overlay.style.backgroundColor = "transparent";
-  //       }
-
-  //     }
-  //   }
-
- 
-
   onClick(e) {
     let action = e.target.dataset.action;
     if (action) {
-     this[action](e);
-    } else if (e.target === this.#overlay){
-        this.removeOverlay();
-    } 
+      this[action](e);
+    } else if (e.target === this.#overlay) {
+      this.removeOverlay();
+    }
   }
 
   addProject() {
-
-      
     const color = document.querySelector(".project-modal .selected .dot");
-    pubSub.publish("Create Project", {projectName: this.#projectNameInput.value, projectColor: color.outerHTML});
+    pubSub.publish("Create Project", { projectName: this.#projectNameInput.value, projectColor: color.outerHTML });
 
     this.removeOverlay();
   }
 
+  updateProject(id) {
+    this.#editProjectID = id;
+    this.#overlay.style.backgroundColor = "rgb(0,0,0,0.5)";
+    this.#overlay.style.display = "block";
+    this.#overlay.appendChild(this.#projectModal);
+    this.#projectModal.style.display = "flex";
+    this.resetMenu();
 
-  updateProject(id){
-   this.#editProjectID = id;
-   this.#overlay.style.backgroundColor = "rgb(0,0,0,0.5)";
-   this.#overlay.style.display = "block";
-   this.#overlay.appendChild(this.#projectModal);
-   this.#projectModal.style.display = "flex";
-   this.resetMenu();
+    this.#projectModal.querySelector(".add").textContent = "Update";
 
-   this.#projectModal.querySelector(".add").textContent = "Update";
- 
-   delete this.#projectModal.querySelector(".add").dataset.action;
-   this.#projectModal.querySelector(".add").dataset.action = "update";
+    delete this.#projectModal.querySelector(".add").dataset.action;
+    this.#projectModal.querySelector(".add").dataset.action = "update";
 
-   const projectDOM = document.getElementById(id);
-   let projectColor = projectDOM.querySelector(".dot");
-   let projectName = projectDOM.querySelector("a span");
-   this.#projectNameInput.value = "";
-   this.#projectNameInput.value = projectName.textContent;
+    const projectDOM = document.getElementById(id);
+    let projectColor = projectDOM.querySelector(".dot");
+    let projectName = projectDOM.querySelector("a span");
+    this.#projectNameInput.value = "";
+    this.#projectNameInput.value = projectName.textContent;
 
+    document.querySelector(".dots .menu").classList.remove("menu-open");
+    const dots = document.querySelectorAll(".dots .menu li");
 
-   
-   document.querySelector(".dots .menu").classList.remove("menu-open");
-   const dots = document.querySelectorAll(".dots .menu li");
-
-   for(let i = 0; i < dots.length; i++){
-      if(dots[i].querySelector(".dot").className === projectColor.className){
-         dots[i].classList.add("active");
-         document.querySelector(".dots .selected").innerHTML = dots[i].innerHTML;
-
+    for (let i = 0; i < dots.length; i++) {
+      if (dots[i].querySelector(".dot").className === projectColor.className) {
+        dots[i].classList.add("active");
+        document.querySelector(".dots .selected").innerHTML = dots[i].innerHTML;
       } else {
-      dots[i].classList.remove("active");
+        dots[i].classList.remove("active");
       }
-   }
-
-
+    }
   }
 
-  update(){
-   const color = document.querySelector(".project-modal .selected .dot");
+  update() {
+    const color = document.querySelector(".project-modal .selected .dot");
 
-   pubSub.publish("Update Todo With Information", {id: this.#editProjectID, color:  color.outerHTML, name: this.#projectNameInput.value  });
-   this.removeOverlay();
+    pubSub.publish("Update Todo With Information", { id: this.#editProjectID, color: color.outerHTML, name: this.#projectNameInput.value });
+    this.removeOverlay();
   }
 
-  cancel(){
-   this.removeOverlay();
+  cancel() {
+    this.removeOverlay();
   }
 
   removeOverlay() {
@@ -249,20 +214,15 @@ export class ProjectModal {
     this.#overlay.style.backgroundColor = "transparent";
   }
 
-  resetMenu(){
+  resetMenu() {
+    document.querySelector(".dots .menu").classList.remove("menu-open");
+    document.querySelector(".dots .selected").innerHTML = "<div class='charcoal dot'></div>Charcoal";
+    const dots = document.querySelectorAll(".dots .menu li");
 
-   document.querySelector(".dots .menu").classList.remove("menu-open");
-   document.querySelector(".dots .selected").innerHTML = "<div class='charcoal dot'></div>Charcoal";
-   const dots = document.querySelectorAll(".dots .menu li");
-
-   for(let i = 0; i < dots.length; i++){
+    for (let i = 0; i < dots.length; i++) {
       dots[i].classList.remove("active");
-   }
-   document.getElementById("charcoal-dot").classList.add("active");
-   this.#projectNameInput.value = "";
-
+    }
+    document.getElementById("charcoal-dot").classList.add("active");
+    this.#projectNameInput.value = "";
   }
- 
-  
-
 }

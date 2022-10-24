@@ -127,6 +127,7 @@ nav {
   transition-duration: 0.5s;
   position: absolute;
   height: 100%;
+  z-index: 1000;
 }
 
 nav li {
@@ -240,10 +241,11 @@ li ul {
   gap: 0.5rem;
 }
 
-.projects li .dot, .projects span svg {
+.projects li .dot,
+.projects span svg {
   width: 1rem;
   height: 1rem;
-  margin: .7rem;
+  margin: 0.7rem;
 }
 
 #addProjectButton {
@@ -251,7 +253,7 @@ li ul {
   border-style: none;
   display: flex;
   align-items: center;
-  margin-right: .95rem;
+  margin-right: 0.95rem;
   padding: 0.6rem;
 }
 
@@ -327,6 +329,7 @@ main {
   flex: 1;
   margin: 0 auto;
   margin-top: 3rem;
+  padding-right: 5rem;
   gap: 1rem;
 }
 
@@ -334,16 +337,6 @@ main {
   font-size: 2rem;
   font-weight: 900;
 }
-
-/* 
-input[type="checkbox"] {
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-  border: 1px solid rgb(130, 130, 130);
-  margin-right: 1rem;
-   }
- */
 
 /* Checkbox gray */
 .checkbox__gray {
@@ -601,12 +594,8 @@ input[type="checkbox"] {
   gap: 0.3rem;
 }
 
-
 .task-name {
-
 }
-
-
 
 .todo-title {
   font-size: 1.4rem;
@@ -643,7 +632,7 @@ input[type="checkbox"] {
   height: 100%;
   gap: 1rem;
   margin-left: auto;
-  opacity: 0; 
+  opacity: 0;
 }
 
 #calendar {
@@ -656,26 +645,24 @@ input[type="checkbox"] {
   height: 2.4rem;
 }
 
- .todo-row:hover .todo-actions{
+.todo-row:hover .todo-actions {
   opacity: 1 !important;
-} 
+}
 
 .todoProject svg {
   display: none;
   margin: 0px !important;
 }
 
-.todoProject:hover svg{
-display: block;
-margin-right: 1.5rem !important;
-margin-bottom: .2rem !important;
+.todoProject:hover svg {
+  display: block;
+  margin-right: 1.5rem !important;
+  margin-bottom: 0.2rem !important;
 }
 
-
-.todoProject:hover .number{
+.todoProject:hover .number {
   display: none;
-  }
-  
+}
 
 /* Todo Item Buttons End */
 
@@ -740,7 +727,6 @@ input[type="date"] {
   padding: 0.3rem 0.3rem;
   font-size: 1.3rem;
   border-radius: 5px;
-  
 }
 
 input[type="date"]:hover {
@@ -749,7 +735,8 @@ input[type="date"]:hover {
   transition: 0.3s;
 }
 
-.options:hover, .edits:hover {
+.options:hover,
+.edits:hover {
   background-color: var(--navHoverColor);
   border-radius: 5px;
   transition: 0.3s;
@@ -765,11 +752,8 @@ input[type="text"] {
   color: var(--navTextColor);
 }
 
-
-
 .edit-todo-menu textarea {
   font-size: 1.3rem;
-  
 }
 
 .edit-todo-menu textarea::placeholder {
@@ -786,7 +770,7 @@ input[type="text"] {
   opacity: 0.9;
 }
 
-.edit-todo-menu  {
+.edit-todo-menu {
   border: 1px solid rgb(229, 229, 229);
   border-radius: 15px;
   padding: 1rem;
@@ -794,8 +778,6 @@ input[type="text"] {
   flex-direction: column;
   gap: 1rem;
 }
-
-
 
 .edit-todo-menu-actions {
   display: flex;
@@ -859,7 +841,7 @@ input[type="text"] {
   width: 100%;
   height: 100%;
   display: none;
-  z-index: 10;
+  z-index: 1000000000000000000;
 }
 
 .edit-todo-menu-container {
@@ -886,24 +868,20 @@ input[type="text"] {
 .absolute input {
   position: relative;
   z-index: 5 !important;
-
 }
-.absolute .select{
+.absolute .select {
   z-index: 5 !important;
-
 }
 
 .no-border {
   border: none;
   padding: 0px;
   z-index: 5 !important;
-
 }
 
 .foot-margin {
   margin-top: 2rem;
   z-index: 5 !important;
-
 }
 
 /* Fixed Modal End */
@@ -931,7 +909,7 @@ input[type="text"] {
 .dropdown {
   font-size: 1.3rem;
   min-width: 10rem;
-position: relative;
+  position: relative;
 }
 
 /* Selected item with caret */
@@ -947,7 +925,6 @@ position: relative;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  
 }
 
 .select:not(.flag .select):hover {
@@ -1007,7 +984,6 @@ position: relative;
   min-width: 100px;
 }
 
-
 .menu li {
   padding: 0.7rem 0.5rem;
   margin: 0.3rem 0;
@@ -1062,7 +1038,6 @@ position: relative;
   gap: 1rem;
 }
 
-
 /* Dots */
 
 .dot {
@@ -1072,98 +1047,83 @@ position: relative;
 }
 
 .berry-red {
-  background-color: rgb(184,37,95);
+  background-color: rgb(184, 37, 95);
 }
 
 .red {
-background-color: rgb(219,64,53);
+  background-color: rgb(219, 64, 53);
 }
 
-.orange{
-  background-color: rgb(255,153,51);
+.orange {
+  background-color: rgb(255, 153, 51);
 }
 
 .yellow {
-  background-color: rgb(250,208,0);
+  background-color: rgb(250, 208, 0);
 }
 
-.olive-green{
-  background-color: rgb(175,184,59);
+.olive-green {
+  background-color: rgb(175, 184, 59);
 }
 
-.lime-green{
-  background-color: rgb(126,204,73);
+.lime-green {
+  background-color: rgb(126, 204, 73);
 }
 
-.green{
-background-color: rgb(41,148,56);
+.green {
+  background-color: rgb(41, 148, 56);
 }
 
-.mint-green{
-background-color: rgb(106,204,188);
+.mint-green {
+  background-color: rgb(106, 204, 188);
 }
 
-.teal{
-  background-color: rgb(21,143,173);
+.teal {
+  background-color: rgb(21, 143, 173);
 }
 
-.sky-blue{
-  background-color: rgb(20,170,245) ;
-
+.sky-blue {
+  background-color: rgb(20, 170, 245);
 }
 
-.light-blue{
-  background-color: rgb(150,195,235);
-
+.light-blue {
+  background-color: rgb(150, 195, 235);
 }
 
-.blue{
-  background-color: rgb(64,115,255) ;
-
+.blue {
+  background-color: rgb(64, 115, 255);
 }
 
-
-.grape{
-  background-color: rgb(136,77,255);
-
+.grape {
+  background-color: rgb(136, 77, 255);
 }
 
 .violet {
-  background-color: rgb(175,56,235) ;
-
+  background-color: rgb(175, 56, 235);
 }
 
-
-
 .lavender {
-  background-color: rgb(235,150,235);
-
+  background-color: rgb(235, 150, 235);
 }
 
 .magenta {
-  background-color: rgb(224,81,148) ;
-
+  background-color: rgb(224, 81, 148);
 }
 
-.salmon{
-  background-color: rgb(255,141,133) ;
-
+.salmon {
+  background-color: rgb(255, 141, 133);
 }
 
 .charcoal {
   background-color: rgb(128, 128, 128);
-
 }
-
 
 .grey {
-  background-color: rgb(184,184,184);
-
+  background-color: rgb(184, 184, 184);
 }
 
-
 .taupe {
-  background-color: rgb(204, 172, 147) ;
+  background-color: rgb(204, 172, 147);
 }
 
 .project-modal {
@@ -1177,14 +1137,12 @@ background-color: rgb(106,204,188);
   background-color: white;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
   border-radius: 10px;
-  max-width: 35rem !important;
-  min-height: 37rem; 
+  max-width: 32rem !important;
+  min-height: 37rem;
   width: 100%;
-  z-index: 55 !important;  
+  z-index: 55 !important;
   /* overflow: hidden; */
-
 }
-
 
 .project-modal-content {
   display: flex;
@@ -1192,7 +1150,6 @@ background-color: rgb(106,204,188);
   padding: 2rem 2rem;
 
   gap: 2rem;
-
 }
 
 .project-modal-content label {
@@ -1202,20 +1159,18 @@ background-color: rgb(106,204,188);
 }
 
 .project-modal-content input {
-  border: 1px solid rgb(221,221,221);
+  border: 1px solid rgb(221, 221, 221);
   border-radius: 5px;
-  padding: .5rem .5rem;
-  transition-duration: .3s;
+  padding: 0.5rem 0.5rem;
+  transition-duration: 0.3s;
   margin-top: 1rem;
   font-size: 1.4rem;
 }
 
-
 .project-modal-content .select {
-  padding: .672rem .5rem;
-  border: 1px solid rgb(221,221,221);
-  margin-top: .9rem;
-
+  padding: 0.672rem 0.5rem;
+  border: 1px solid rgb(221, 221, 221);
+  margin-top: 0.9rem;
 }
 .project-modal-content .selected {
   display: flex;
@@ -1223,7 +1178,7 @@ background-color: rgb(106,204,188);
   gap: 1rem;
   vertical-align: middle;
   font-size: 1.4rem;
-  margin-left: .7rem;
+  margin-left: 0.7rem;
 }
 
 .project-modal-content li {
@@ -1232,39 +1187,29 @@ background-color: rgb(106,204,188);
   z-index: 55 !important;
 }
 
-.project-modal-content .dropdown {
+.project-modal-content .menu {
+  max-height: 110px;
+  max-height: 240px;
+  overflow-y: scroll;
+  top: 2.5rem;
 }
 
-
-.project-modal-content .menu{
-max-height: 110px; 
-max-height: 240px; 
-overflow-y: scroll;
-top: 2.5rem;
-
-}
-
-
-
-.project-modal-content input:focus{
-  border: 1px solid rgb(128,128,128);
+.project-modal-content input:focus {
+  border: 1px solid rgb(128, 128, 128);
 }
 
 .add-project {
-  background-color: rgb(250,250,250);
+  background-color: rgb(250, 250, 250);
   font-size: 1.6rem;
   color: #202020;
   font-weight: 700;
-  border-bottom: 1px solid rgb(221,221,221);
+  border-bottom: 1px solid rgb(221, 221, 221);
   overflow: hidden;
   padding: 2rem 2rem;
   padding-bottom: 1.3rem;
   display: flex;
   align-items: center;
-
 }
-
-
 
 .project-modal-footer {
   margin-top: auto;
@@ -1272,9 +1217,8 @@ top: 2.5rem;
   justify-content: flex-end;
   padding: 1rem 2rem;
   gap: 1rem;
- border-top: 1px solid rgb(221,221,221);
- background-color: rgb(250,250,250);
-
+  border-top: 1px solid rgb(221, 221, 221);
+  background-color: rgb(250, 250, 250);
 }
 
 .project-modal-footer button {
@@ -1287,26 +1231,15 @@ top: 2.5rem;
 }
 
 .project-modal-footer .add {
-  background-color: rgb(219,76,63);
+  background-color: rgb(219, 76, 63);
   color: white;
- 
 }
 .project-modal-footer .cancel {
-  
-  background-color: rgb(243,243,243);
-  border: 1px solid rgb(221,221,221);
- 
+  background-color: rgb(243, 243, 243);
+  border: 1px solid rgb(221, 221, 221);
 }
 
-
-
-
-
-
 /* Contextual Menu */
-
-
-
 
 .wrapper {
   position: absolute;
@@ -1319,6 +1252,7 @@ top: 2.5rem;
   transition: transform 200ms ease-in-out;
   border: 1px solid #ddd;
   border-radius: 2px;
+  z-index: 1000000;
 }
 .wrapper1 {
   position: absolute;
@@ -1331,6 +1265,7 @@ top: 2.5rem;
   transition: transform 200ms ease-in-out;
   border: 1px solid #ddd;
   border-radius: 2px;
+  z-index: 1000000;
 }
 
 .appear {
@@ -1340,17 +1275,15 @@ top: 2.5rem;
 }
 
 .wrapper .contextMenu {
- 
-  margin-top: .4rem;
-  margin-bottom: .4rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
 
   padding: 0px;
 }
 
 .wrapper1 .contextMenu {
- 
-  margin-top: .6rem;
-  margin-bottom: .6rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
 
   padding: 0px;
 }
@@ -1372,13 +1305,11 @@ top: 2.5rem;
   border-radius: 5px;
   margin-bottom: 4px;
   font-weight: 400;
-
 }
 
 .activeTodoItem {
-  background-color: rgb(238,238,238);
+  background-color: rgb(238, 238, 238);
 }
-
 
 .move {
   height: 100%;
@@ -1386,8 +1317,7 @@ top: 2.5rem;
   align-items: center;
 }
 
-
-.content .item:hover{
+.content .item:hover {
   background: #f2f2f2;
 }
 
@@ -1396,11 +1326,8 @@ top: 2.5rem;
   font-size: 13px;
   font-weight: 400;
   color: #202020;
-  margin-top: .6rem;
+  margin-top: 0.6rem;
 }
-
-
-
 
 .content .share {
   justify-content: space-between;
@@ -1411,7 +1338,7 @@ top: 2.5rem;
   margin-left: 15px !important;
 }
 
-.share .share-menu{
+.share .share-menu {
   position: absolute;
   background: #ffffff;
   width: 200px;
@@ -1428,7 +1355,6 @@ top: 2.5rem;
 
 .share-menu span {
   color: #202020;
-
 }
 
 .share:hover .share-menu {
@@ -1438,8 +1364,64 @@ top: 2.5rem;
 
 .share-menu .dot {
   margin-right: 1rem;
-  margin-left: .35rem;
+  margin-left: 0.35rem;
 }
 .share-menu svg {
-  margin-right: .55rem;
+  margin-right: 0.55rem;
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-right: 5rem !important;
+    padding-left: 5rem !important;
+  }
+
+  .shiftOut {
+    margin-left: 0rem !important;
+  }
+
+  .shiftIn {
+    margin-left: 0rem !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
+  .header-left {
+    margin-left: 1rem !important;
+  }
+
+  .todo-actions {
+    opacity: 1 !important;
+  }
+
+  .dropdown.editMenu {
+    min-width: 80px !important;
+  }
+
+  nav {
+    width: 30rem;
+  }
+
+  .wrapper {
+    margin-right: 1rem;
+  }
+
+  .todoProject svg {
+    display: block;
+    margin-right: 1.5rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .todoProject .number {
+    display: none;
+  }
 }

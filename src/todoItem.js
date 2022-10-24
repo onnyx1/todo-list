@@ -8,7 +8,7 @@ export class todoItem {
   #projectLocation;
   #priority;
   #id;
-  
+
   constructor(taskName, description, dueDate, projectLocation, priority) {
     this.#taskName = taskName;
     this.#description = description;
@@ -56,26 +56,20 @@ export class todoItem {
   getID() {
     return this.#id;
   }
-
 }
 
-function createTodo(information){
-const newTodo = new todoItem(information.taskName,information.description,information.date,information.projectLocation, information.priority);
-console.log("New todo created!!!!!");
-console.log(newTodo.getDueDate());
-pubSub.publish("Add to storage", newTodo);
-pubSub.publish("Should I add a todo to the current container?", newTodo);
-pubSub.publish("Update Project Counter", newTodo);
-
+function createTodo(information) {
+  const newTodo = new todoItem(information.taskName, information.description, information.date, information.projectLocation, information.priority);
+  pubSub.publish("Add to storage", newTodo);
+  pubSub.publish("Should I add a todo to the current container?", newTodo);
+  pubSub.publish("Update Project Counter", newTodo);
 }
 
-function duplicate(todo){
-  const newTodo = new todoItem(todo.taskName,todo.description,todo.date,todo.projectLocation, todo.priority);
-  console.log(newTodo);
+function duplicate(todo) {
+  const newTodo = new todoItem(todo.taskName, todo.description, todo.date, todo.projectLocation, todo.priority);
   pubSub.publish("Add to storage", newTodo);
   pubSub.publish("Update Project Counter", newTodo);
   pubSub.publish("Add duplicated todo", newTodo);
-
 }
 
 pubSub.subscribe("Create todo and add to storage", createTodo);
